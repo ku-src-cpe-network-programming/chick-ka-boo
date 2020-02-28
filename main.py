@@ -7,7 +7,7 @@ import time
 
 root = Tk()
 ##root.geometry("1280x680+1600+250")
-root.geometry("1920x1000+0+0")
+root.geometry("1280x720+0+0")
 root.title("TEXAS สาขา Chick-ka-boo")
 root.configure(background='#DD4132')
 ## น้ำเงิน #2b5797
