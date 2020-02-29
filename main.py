@@ -7,66 +7,77 @@ import time
 
 root = Tk()
 ##root.geometry("1280x680+1600+250")
-root.geometry("1280x720+0+0")
+
+w=1280
+h=720
+ws = root.winfo_screenwidth()
+hs = root.winfo_screenheight()
+    # calculate position x, y
+x = (ws/2) - (w/2)    
+y = (hs/2) - (h/2)
+
+root.geometry('1280x720+%d+%d' % (x, y))
+#root.geometry("1280x720+0+0")
+root.resizable(0, 0)
 root.title("TEXAS สาขา Chick-ka-boo")
 root.configure(background='#DD4132')
 ## น้ำเงิน #2b5797
 ##เหลือง #edb44e
 
 
-Tops = Frame(root,width= 1000,height = 200, bd=2, relief="raise",bg='#DD4132')
+Tops = Frame(root,width= 1000,height = 200, bd=5, relief="raise",bg='#DD4132')
 Tops.pack(side=TOP)
 
 
 
 
-fMainL = Frame(root,width= 1500,height = 2000, bd=2, relief="raise",bg='red')
+fMainL = Frame(root,width= 1500,height = 2000, bd=5, relief="raise",bg='red')
 fMainL.pack(side=LEFT)
 
-fMainR = Frame(root,width= 2000,height = 650, bd=2, relief="raise",bg='#2b5797')
+fMainR = Frame(root,width= 2000,height = 650, bd=5, relief="raise",bg='#2b5797')
 fMainR.pack(side=RIGHT)
 
-fMLT = Frame(fMainL,width= 900,height = 320, bd=2, relief="raise",bg='red')
+fMLT = Frame(fMainL,width= 900,height = 320, bd=5, relief="raise",bg='red')
 fMLT.pack(side=TOP)
 
-fMLB = Frame(fMainL,width= 900,height = 320, bd=2, relief="raise" ,bg='pink')
+fMLB = Frame(fMainL,width= 900,height = 320, bd=5, relief="raise" ,bg='pink')
 fMLB.pack(side=BOTTOM)
 
-fRemail = Frame(fMainR,width=2000,height = 200, bd=2, relief="raise" ,bg="#2b5797")
+fRemail = Frame(fMainR,width=2000,height = 200, bd=5, relief="raise" ,bg="#2b5797")
 fRemail.pack(side=TOP)
 #===========frmae send file========================
-fRsendfile = Frame(fMainR,width=2000,height = 200, bd=2, relief="raise" ,bg='#2b5797')
+fRsendfile = Frame(fMainR,width=2000,height = 200, bd=5, relief="raise" ,bg='#2b5797')
 fRsendfile .pack(side=BOTTOM)
-fRsendfile_0 = Frame(fRsendfile, bd=2, relief="raise" ,bg='black')
+fRsendfile_0 = Frame(fRsendfile, bd=5, relief="raise" ,bg='black')
 fRsendfile_0.grid(row=0,column=0)
-fRsendfile_1 = Frame(fRsendfile, bd=2, relief="raise" ,bg='black')
+fRsendfile_1 = Frame(fRsendfile, bd=5, relief="raise" ,bg='black')
 fRsendfile_1.grid(row=0,column=1)
 #========================================
 
-fReceipt = Frame(fMainR,width= 440,height = 450, bd=2, relief="raise" ,bg="#2b5797")
+fReceipt = Frame(fMainR,width= 440,height = 450, bd=5, relief="raise" ,bg="#2b5797")
 fReceipt.pack(side=TOP)
 
-fButton = Frame(fMainR,width= 440,height = 240, bd=2, relief="raise",bg='black')
+fButton = Frame(fMainR,width= 440,height = 240, bd=5, relief="raise",bg='black')
 fButton.pack(side=BOTTOM)
 #===============ฝั่ง รายการอาหาร=========================
-fChicken0 = Frame(fMLT, bd=2, relief="raise",bg='white')
+fChicken0 = Frame(fMLT, bd=5, relief="raise",bg='white')
 fChicken0.pack(side=TOP)
-fChicken00 = Frame(fMLT, bd=2, relief="raise",bg='white')
+fChicken00 = Frame(fMLT, bd=5, relief="raise",bg='white')
 fChicken00.pack(side=TOP)
 
-fChicken1 = Frame(fMLT,width= 400,height = 500, bd=2, relief="raise",bg='white')
+fChicken1 = Frame(fMLT,width= 400,height = 500, bd=5, relief="raise",bg='white')
 fChicken1.pack(side=TOP)
-fChicken11 = Frame(fMLT,width= 400,height = 500, bd=2, relief="raise",bg='white')
+fChicken11 = Frame(fMLT,width= 400,height = 500, bd=5, relief="raise",bg='white')
 fChicken11.pack(side=TOP)
 
-fChicken2 = Frame(fMLT,width= 400,height = 250, bd=2, relief="raise",bg='white')
+fChicken2 = Frame(fMLT,width= 400,height = 250, bd=5, relief="raise",bg='white')
 fChicken2.pack(side=TOP)
-fChicken22 = Frame(fMLT,width= 400,height = 250, bd=2, relief="raise",bg='white')
+fChicken22 = Frame(fMLT,width= 400,height = 250, bd=5, relief="raise",bg='white')
 fChicken22.pack(side=TOP)
 #===========================================================================
-fCost1 = Frame(fMLB,width= 1000,height = 330, bd=2, relief="raise",bg='Dark Orange')
+fCost1 = Frame(fMLB,width= 1000,height = 330, bd=5, relief="raise",bg='Dark Orange')
 fCost1.pack(side=LEFT)
-fCost2 = Frame(fMLB,width= 1000,height = 320, bd=2, relief="raise",bg='Dark Orange')
+fCost2 = Frame(fMLB,width= 1000,height = 320, bd=5, relief="raise",bg='Dark Orange')
 fCost2.pack(side=RIGHT)
 
 
@@ -78,15 +89,12 @@ lblEmail.grid(row=2,column=0)
 lblSendfile = Label(fRsendfile_0,font=('TH Sarabun New',18,'bold'),text = "send file: principal office",bg="#2b5797",bd=10,fg="#edb44e")
 lblSendfile.grid(row=3,column=0)
 ##========== ส่วน หัว ป้ายชื่อ =========================================
-lblInfo = Label(Tops,font=('TH Sarabun New',30,'bold'),text = " TEXAS CHICKEN  (Chick-ka-boo)",bg="#2b5797",bd=10,fg="#edb44e")
+lblInfo = Label(Tops,font=('TH Sarabun New',50,'bold'),text = " TEXAS CHICKEN  (Chick-ka-boo)",bg="#2b5797",bd=10,fg="#edb44e")
 lblInfo.grid(row=0,column=1)
 
-logoSizeX = 70
-logoSizeY = 70
 image = Image.open("logotexas.png")
-image = image.resize((logoSizeX, logoSizeY))
 photo = ImageTk.PhotoImage(image)
-logo = Label(Tops,width=logoSizeX,height=logoSizeY,image=photo)
+logo = Label(Tops,width=200,height=200,image=photo)
 logo.image = photo # keep a reference!
 logo.grid(row=0,column=0)
 
@@ -246,76 +254,67 @@ for x in EntryChickenList:
     x.set("0")
 #====================image chicka bool===============
 #================column 0=================
-menuSizeX = 200
-menuSizeY = 100
+menuSizeX=200
+menusizeY=100
 img_0 = Image.open("menu00.jpg")
-img_0 = img_0.resize((menuSizeX, menuSizeY))
 photo_0 = ImageTk.PhotoImage(img_0)
-img_0 = Label(fChicken0,width=menuSizeX,height=menuSizeY,image=photo_0,bg='white')
-img_0.image = photo_0 # keep a reference!
-img_0.grid(row=0,column=0)
+img_00 = Label(fChicken0,width=300,height=150,image=photo_0,bg='white')
+img_00.image = photo_0 # keep a reference!
+img_00.grid(row=0,column=0)
 
 img_1 = Image.open("menu01.jpg")
-img_1 = img_1.resize((menuSizeX, menuSizeY))
 photo_1 = ImageTk.PhotoImage(img_1)
-img_1 = Label(fChicken0,width=menuSizeX,height=menuSizeY,image=photo_1,bg='white')
-img_1.image = photo_1 # keep a reference!
-img_1.grid(row=0,column=2)
+img_11 = Label(fChicken0,width=300,height=150,image=photo_1,bg='white')
+img_11.image = photo_1 # keep a reference!
+img_11.grid(row=0,column=2)
 
 img_2 = Image.open("menu02.jpg")
-img_2 = img_2.resize((menuSizeX, menuSizeY))
 photo_2 = ImageTk.PhotoImage(img_2)
-img_2 = Label(fChicken0,width=menuSizeX,height=menuSizeY,image=photo_2,bg='white')
-img_2.image = photo_2 # keep a reference!
-img_2.grid(row=0,column=4)
+img_22 = Label(fChicken0,width=300,height=150,image=photo_2,bg='white')
+img_22.image = photo_2 # keep a reference!
+img_22.grid(row=0,column=4)
 
 img_3 = Image.open("menu03.jpg")
-img_3 = img_3.resize((menuSizeX, menuSizeY))
 photo_3 = ImageTk.PhotoImage(img_3)
-img_3 = Label(fChicken0,width=menuSizeX,height=menuSizeY,image=photo_3,bg='white')
-img_3.image = photo_3 # keep a reference!
-img_3.grid(row=0,column=6)
+img_33 = Label(fChicken0,width=300,height=150,image=photo_3,bg='white')
+img_33.image = photo_3 # keep a reference!
+img_33.grid(row=0,column=6)
 #================column 2=================
 img_4 = Image.open("menu04.jpg")
-img_4 = img_4.resize((menuSizeX, menuSizeY))
 photo_4 = ImageTk.PhotoImage(img_4)
-img_4 = Label(fChicken1,width=menuSizeX,height=menuSizeY,image=photo_4,bg='white')
-img_4.image = photo_4 # keep a reference!
-img_4.grid(row=0,column=1)
+img_44 = Label(fChicken1,width=400,height=150,image=photo_4,bg='white')
+img_44.image = photo_4 # keep a reference!
+img_44.grid(row=0,column=1)
 
 img_5 = Image.open("menu05.jpg")
 photo_5 = ImageTk.PhotoImage(img_5)
-img_5 = Label(fChicken1,width=menuSizeX,height=menuSizeY,image=photo_5,bg='white')
-img_5.image = photo_5 # keep a reference!
-img_5.grid(row=0,column=2)
+img_55 = Label(fChicken1,width=400,height=150,image=photo_5,bg='white')
+img_55.image = photo_5 # keep a reference!
+img_55.grid(row=0,column=2)
 
 img_6 = Image.open("menu06.jpg")
-img_6 = img_6.resize((menuSizeX, menuSizeY))
 photo_6 = ImageTk.PhotoImage(img_6)
-img_6 = Label(fChicken1,width=menuSizeX,height=menuSizeY,image=photo_6,bg='white')
-img_6.image = photo_6 # keep a reference!
-img_6.grid(row=0,column=3)
+img_66 = Label(fChicken1,width=400,height=150,image=photo_6,bg='white')
+img_66.image = photo_6 # keep a reference!
+img_66.grid(row=0,column=3)
 #================column 4=================
-img_7 = Image.open("menu07.jpg")
-img_7 = img_7.resize((menuSizeX, menuSizeY))
-photo_7 = ImageTk.PhotoImage(img_7)
-img_7 = Label(fChicken2,width=menuSizeX,height=menuSizeY,image=photo_7,bg='white')
-img_7.image = photo_7 # keep a reference!
-img_7.grid(row=0,column=1)
-
-img_8 = Image.open("menu08.jpg")
-img_8 = img_8.resize((menuSizeX, menuSizeY))
+img_8 = Image.open("menu07.jpg")
 photo_8 = ImageTk.PhotoImage(img_8)
-img_8 = Label(fChicken2,width=menuSizeX,height=menuSizeY,image=photo_8,bg='white')
-img_8.image = photo_8 # keep a reference!
-img_8.grid(row=0,column=2)
+img_88 = Label(fChicken2,width=400,height=150,image=photo_8,bg='white')
+img_88.image = photo_8 # keep a reference!
+img_88.grid(row=0,column=1)
 
-img_9 = Image.open("menu09.jpg")
-img_9 = img_9.resize((menuSizeX, menuSizeY))
+img_9 = Image.open("menu08.jpg")
 photo_9 = ImageTk.PhotoImage(img_9)
-img_9 = Label(fChicken2,width=menuSizeX,height=menuSizeY,image=photo_9,bg='white')
-img_9.image = photo_9 # keep a reference!
-img_9.grid(row=0,column=3)
+img_99 = Label(fChicken2,width=400,height=150,image=photo_9,bg='white')
+img_99.image = photo_9 # keep a reference!
+img_99.grid(row=0,column=2)
+
+img_10 = Image.open("menu09.jpg")
+photo_10 = ImageTk.PhotoImage(img_10)
+img_10 = Label(fChicken2,width=400,height=150,image=photo_10,bg='white')
+img_10.image = photo_10 # keep a reference!
+img_10.grid(row=0,column=3)
 
 #====================================== Chicken ====================================
 """CoffeeChicken = Checkbutton(fChicken, text="Coffee Chicken \t",variable = var9,onvalue = 1, offvalue=0,
@@ -383,7 +382,7 @@ ServiceCharge = StringVar()
 #================================== Receipt Information ===================
 lblReceipt = Label(fReceipt,font=('TH Sarabun New',13,'bold'), text="Receipt", bd=2,anchor='w' ,fg="#edb44e",bg="#2b5797")
 lblReceipt.grid(row=0,column=0, sticky=W)
-txtReceipt = Text(fReceipt,font=('TH Sarabun New',12,'bold'), bd=5,width=60,height=14,bg="white")
+txtReceipt = Text(fReceipt,font=('TH Sarabun New',12,'bold'), bd=5,width=56,height=20,bg="white")
 txtReceipt.grid(row=1,column=0)
 
 #=================================== Cost Items Information============
