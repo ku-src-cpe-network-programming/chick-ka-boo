@@ -78,7 +78,9 @@ fChicken22.pack(side=TOP)
 fCost1 = Frame(fMLB,width= 1000,height = 330, bd=2, relief="raise",bg='Dark Orange')
 fCost1.pack(side=LEFT)
 fCost2 = Frame(fMLB,width= 1000,height = 320, bd=2, relief="raise",bg='Dark Orange')
-fCost2.pack(side=RIGHT)
+fCost2.pack(side=LEFT)
+fCost3 = Frame(fMLB,width= 1000,height = 320, bd=2, relief="raise",bg='Dark Orange')
+fCost3.pack(side=LEFT)
 
 
 ##=============email server=====================
@@ -163,6 +165,8 @@ def FrameCostReset():
     SubTotal.set("")
     TotalCost.set("")
     CostofChicken.set("")
+    RecieveMoney.set("")
+    ChangeMoney.set("")
 
 def chkbutton_value(chkValue,txtLabel,Entry):
     if chkValue.get() == 1:
@@ -263,60 +267,70 @@ menuSizeX=200
 menuSizeY=122
 menuSizeX2=268
 img_0 = Image.open("menu00.jpg")
+img_0 =  img_0.resize((menuSizeX, menuSizeY))
 photo_0 = ImageTk.PhotoImage(img_0)
 img_00 = Label(fChicken0,width=menuSizeX,height=menuSizeY,image=photo_0,bg='white')
 img_00.image = photo_0 # keep a reference!
 img_00.grid(row=0,column=0)
 
 img_1 = Image.open("menu01.jpg")
+img_1 =  img_1.resize((menuSizeX, menuSizeY))
 photo_1 = ImageTk.PhotoImage(img_1)
 img_11 = Label(fChicken0,width=menuSizeX,height=menuSizeY,image=photo_1,bg='white')
 img_11.image = photo_1 # keep a reference!
 img_11.grid(row=0,column=2)
 
 img_2 = Image.open("menu02.jpg")
+img_2 =  img_2.resize((menuSizeX, menuSizeY))
 photo_2 = ImageTk.PhotoImage(img_2)
 img_22 = Label(fChicken0,width=menuSizeX,height=menuSizeY,image=photo_2,bg='white')
 img_22.image = photo_2 # keep a reference!
 img_22.grid(row=0,column=4)
 
 img_3 = Image.open("menu03.jpg")
+img_3 =  img_3.resize((menuSizeX, menuSizeY))
 photo_3 = ImageTk.PhotoImage(img_3)
 img_33 = Label(fChicken0,width=menuSizeX,height=menuSizeY,image=photo_3,bg='white')
 img_33.image = photo_3 # keep a reference!
 img_33.grid(row=0,column=6)
 #================column 2=================
 img_4 = Image.open("menu04.jpg")
+img_4 =  img_4.resize((menuSizeX2, menuSizeY))
 photo_4 = ImageTk.PhotoImage(img_4)
 img_44 = Label(fChicken1,width=menuSizeX2,height=menuSizeY,image=photo_4,bg='white')
 img_44.image = photo_4 # keep a reference!
 img_44.grid(row=0,column=1)
 
 img_5 = Image.open("menu05.jpg")
+img_5 =  img_5.resize((menuSizeX2, menuSizeY))
 photo_5 = ImageTk.PhotoImage(img_5)
 img_55 = Label(fChicken1,width=menuSizeX2,height=menuSizeY,image=photo_5,bg='white')
 img_55.image = photo_5 # keep a reference!
 img_55.grid(row=0,column=2)
 
 img_6 = Image.open("menu06.jpg")
+img_6 =  img_6.resize((menuSizeX2, menuSizeY))
 photo_6 = ImageTk.PhotoImage(img_6)
 img_66 = Label(fChicken1,width=menuSizeX2,height=menuSizeY,image=photo_6,bg='white')
 img_66.image = photo_6 # keep a reference!
 img_66.grid(row=0,column=3)
 #================column 4=================
 img_8 = Image.open("menu07.jpg")
+img_8 =  img_8.resize((menuSizeX2, menuSizeY))
 photo_8 = ImageTk.PhotoImage(img_8)
 img_88 = Label(fChicken2,width=menuSizeX2,height=menuSizeY,image=photo_8,bg='white')
 img_88.image = photo_8 # keep a reference!
 img_88.grid(row=0,column=1)
 
 img_9 = Image.open("menu08.jpg")
+img_9 =  img_9.resize((menuSizeX2, menuSizeY))
 photo_9 = ImageTk.PhotoImage(img_9)
 img_99 = Label(fChicken2,width=menuSizeX2,height=menuSizeY,image=photo_9,bg='white')
 img_99.image = photo_9 # keep a reference!
 img_99.grid(row=0,column=2)
 
 img_10 = Image.open("menu09.jpg")
+img_10 =  img_10.resize((menuSizeX2, menuSizeY))
 photo_10 = ImageTk.PhotoImage(img_10)
 img_10 = Label(fChicken2,width=menuSizeX2,height=menuSizeY,image=photo_10,bg='white')
 img_10.image = photo_10 # keep a reference!
@@ -373,9 +387,9 @@ txtChicken6.grid(row=1,column =5)
 
 txtChicken8 = Entry(fChicken22 ,font=('TH Sarabun New',12,'bold'),bd=5,width=21,justify='right',textvariable=EntryChickenList[7],state = DISABLED)
 txtChicken8.grid(row=1,column =1)
-txtChicken9 = Entry(fChicken22 ,font=('TH Sarabun New',12,'bold'),bd=5,width=28,justify='right',textvariable=EntryChickenList[7],state = DISABLED)
+txtChicken9 = Entry(fChicken22 ,font=('TH Sarabun New',12,'bold'),bd=5,width=28,justify='right',textvariable=EntryChickenList[8],state = DISABLED)
 txtChicken9.grid(row=1,column =3)
-txtChicken10 = Entry(fChicken22 ,font=('TH Sarabun New',12,'bold'),bd=5,width=24,justify='right',textvariable=EntryChickenList[7],state = DISABLED)
+txtChicken10 = Entry(fChicken22 ,font=('TH Sarabun New',12,'bold'),bd=5,width=24,justify='right',textvariable=EntryChickenList[9],state = DISABLED)
 txtChicken10.grid(row=1,column =5)
 
 #===============================Variable Calculation =====================
@@ -384,6 +398,8 @@ SubTotal = StringVar()
 TotalCost = StringVar()
 CostofChicken = StringVar()
 ServiceCharge = StringVar()
+RecieveMoney = StringVar()
+ChangeMoney = StringVar()
 
 #================================== Receipt Information ===================
 lblReceipt = Label(fReceipt,font=('TH Sarabun New',13,'bold'), text="Receipt", bd=2,anchor='w' ,fg="#edb44e",bg="#2b5797")
@@ -426,6 +442,23 @@ lblTotalCost.grid(row=2,column=0,sticky=W)
 txtTotalCost=Entry(fCost2,font=('TH Sarabun New',12,'bold'),bd=5,justify='right',
                    textvariable=TotalCost,bg="white")
 txtTotalCost.grid(row=2,column=1,sticky=W)
+
+lblRecieveMoney = Label(fCost3,font=('TH Sarabun New',12,'bold'),text="Recieve Money",bd=5,bg="Dark Orange")
+lblRecieveMoney.grid(row=0,column=0,sticky=W)
+txtRecieveMoney=Entry(fCost3,font=('TH Sarabun New',12,'bold'),bd=5,justify='right',
+                   textvariable=RecieveMoney,bg="white")
+txtRecieveMoney.grid(row=0,column=1,sticky=W)
+
+lblChangeMoney = Label(fCost3,font=('TH Sarabun New',12,'bold'),text="Change Money",bd=5,bg="Dark Orange")
+lblChangeMoney.grid(row=1,column=0,sticky=W)
+txtChangeMoney=Entry(fCost3,font=('TH Sarabun New',12,'bold'),bd=5,justify='right',
+                   textvariable=ChangeMoney,bg="white")
+txtChangeMoney.grid(row=1,column=1,sticky=W)
+
+
+
+lblEmpty = Label(fCost3,font=('TH Sarabun New',12,'bold'),text="",bd=5,bg="Dark Orange")
+lblEmpty.grid(row=2,column=0,sticky=W)
 #================================== Button =========================
 widthButtonTotal=4
 padxButtonTotal=32
