@@ -49,7 +49,7 @@ lblTitle = Label(BottomFrame,font=('arial',30,'bold'), text="IP", bd=21,bg="#B22
 lblTitle.grid(row=0,column=0)
 lblTitle = Entry(BottomFrame,font=('arial',30,'bold'), bd=21,bg="#B22222",fg="Cornsilk",justify=CENTER)
 lblTitle.grid(row=0,column=1)
-btnConnect = Button(BottomFrame,text="Connect", font=('Times 26 bold'), height = 1, width=20,bg="#edb44e")
+btnConnect = Button(BottomFrame,text="Host", font=('Times 26 bold'), height = 1, width=20,bg="#edb44e")
 btnConnect.grid(row=0,column=2)
 
 lblTitle1 = Label(BottomFrame,font=('arial',30,'bold'), text="IP", bd=21,bg="#B22222",fg="Cornsilk",justify=CENTER)
