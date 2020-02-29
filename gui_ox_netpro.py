@@ -3,8 +3,17 @@ from tkinter import *
 
 ########## Draw Frame ############
 root =Tk()
-root.geometry("1600x750+0+0")
+##root.geometry("1600x850+0+0")
 root.title("GAME OX")
+w=1600
+h=850
+ws = root.winfo_screenwidth()
+hs = root.winfo_screenheight()
+    # calculate position x, y
+x = (ws/2) - (w/2)    
+y = (hs/2) - (h/2)
+
+root.geometry('1600x850+%d+%d' % (x, y))
 root.configure(background = '#2b5797')
 ##สีเหลือง #edb44e
 ##แดง #B22222
@@ -33,6 +42,15 @@ RightFrame2.grid(row=1,column=0)
 
 RightFrame3 = Frame(RightFrame , bd=10, width=560, height=200,padx=10,pady=2,bg="#2b5797" , relief=RIDGE)
 RightFrame3.grid(row=3,column=0)
+
+BottomFrame = Frame(root, pady=2,width=1350, height=100, relief=RIDGE,bg ='#2b5797')
+BottomFrame.grid(row=2, column=0)
+lblTitle = Label(BottomFrame,font=('arial',30,'bold'), text="IP", bd=21,bg="#B22222",fg="Cornsilk",justify=CENTER)
+lblTitle.grid(row=0,column=0)
+lblTitle = Entry(BottomFrame,font=('arial',30,'bold'), bd=21,bg="#B22222",fg="Cornsilk",justify=CENTER)
+lblTitle.grid(row=0,column=1)
+btnConnect = Button(BottomFrame,text="Connect", font=('Times 26 bold'), height = 1, width=20,bg="#edb44e")
+btnConnect.grid(row=0,column=2)
 
 
 ##### set player #####
@@ -308,7 +326,7 @@ button9.grid(row=3,column=2, stick = S+N+E+W)
 def openhof():
     #window = Toplevel(root)
     window =Tk()
-    window.geometry("700x400+0+250")
+    window.geometry("700x400+160+350")
     window.title("Hall of Frame")
     window.configure(background = '#2b5797')
     Topfr = Frame(window, bg = '#2b5797',width=100, height=50)
