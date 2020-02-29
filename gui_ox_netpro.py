@@ -6,14 +6,14 @@ root =Tk()
 ##root.geometry("1600x850+0+0")
 root.title("GAME OX")
 w=1600
-h=850
+h=1000
 ws = root.winfo_screenwidth()
 hs = root.winfo_screenheight()
     # calculate position x, y
 x = (ws/2) - (w/2)    
 y = (hs/2) - (h/2)
 
-root.geometry('1600x850+%d+%d' % (x, y))
+root.geometry('1600x1000+%d+%d' % (x, y))
 root.configure(background = '#2b5797')
 ##สีเหลือง #edb44e
 ##แดง #B22222
@@ -51,6 +51,13 @@ lblTitle = Entry(BottomFrame,font=('arial',30,'bold'), bd=21,bg="#B22222",fg="Co
 lblTitle.grid(row=0,column=1)
 btnConnect = Button(BottomFrame,text="Connect", font=('Times 26 bold'), height = 1, width=20,bg="#edb44e")
 btnConnect.grid(row=0,column=2)
+
+lblTitle1 = Label(BottomFrame,font=('arial',30,'bold'), text="IP", bd=21,bg="#B22222",fg="Cornsilk",justify=CENTER)
+lblTitle1.grid(row=1,column=0)
+lblTitle1 = Entry(BottomFrame,font=('arial',30,'bold'), bd=21,bg="#B22222",fg="Cornsilk",justify=CENTER)
+lblTitle1.grid(row=1,column=1)
+btnConnect1 = Button(BottomFrame,text="Connect", font=('Times 26 bold'), height = 1, width=20,bg="#edb44e")
+btnConnect1.grid(row=1,column=2)
 
 
 ##### set player #####
