@@ -50,15 +50,19 @@ lblTitle.grid(row=0,column=0)
 lblTitle = Entry(BottomFrame,font=('arial',30,'bold'), bd=21,bg="#B22222",fg="Cornsilk",justify=CENTER)
 lblTitle.grid(row=0,column=1)
 btnConnect = Button(BottomFrame,text="Host", font=('Times 26 bold'), height = 1, width=20,bg="#edb44e")
-btnConnect.grid(row=0,column=2)
+btnConnect.grid(row=0,column=2,padx=5)
 
 lblTitle1 = Label(BottomFrame,font=('arial',30,'bold'), text="IP", bd=21,bg="#B22222",fg="Cornsilk",justify=CENTER)
 lblTitle1.grid(row=1,column=0)
 lblTitle1 = Entry(BottomFrame,font=('arial',30,'bold'), bd=21,bg="#B22222",fg="Cornsilk",justify=CENTER)
 lblTitle1.grid(row=1,column=1)
 btnConnect1 = Button(BottomFrame,text="Connect", font=('Times 26 bold'), height = 1, width=20,bg="#edb44e")
-btnConnect1.grid(row=1,column=2)
+btnConnect1.grid(row=1,column=2,padx=5)
 
+btnHvP = Button(BottomFrame,text="Host-Player", font=('Times 26 bold'), height = 1, width=10,bg="#edb44e")
+btnHvP.grid(row=2,column=1,pady=10)
+btnPvP = Button(BottomFrame,text="Player-Player", font=('Times 26 bold'), height = 1, width=10,bg="#edb44e")
+btnPvP.grid(row=2,column=2,pady=10,padx=3)
 
 ##### set player #####
 PlayerX=IntVar()
@@ -69,13 +73,13 @@ PlayerO.set(0)
     
 lblPlayerX = Label(RightFrame1,font=('arial',40,'bold'), text="Player X", padx=2,pady=2,bg="#edb44e")
 lblPlayerX.grid(row=0,column=0,sticky=W)
-txtPlayerX=Entry(RightFrame1,font=('arial',40,'bold'), bd=2,fg="black",textvariable= PlayerX, width=14,
+txtPlayerX=Label(RightFrame1,font=('arial',40,'bold'), bd=2,fg="black",textvariable= PlayerX, width=14,
                  justify=CENTER).grid(row=0,column=1)
 
 
 lblPlayerO = Label(RightFrame1,font=('arial',40,'bold'), text="Player O", padx=2,pady=2,bg="#edb44e")
 lblPlayerO.grid(row=1,column=0,sticky=W)
-txtPlayerO=Entry(RightFrame1,font=('arial',40,'bold'), bd=2,fg="black",textvariable= PlayerO, width=14,
+txtPlayerO=Label(RightFrame1,font=('arial',40,'bold'), bd=2,fg="black",textvariable= PlayerO, width=14,
                  justify=CENTER).grid(row=1,column=1)
 
 
