@@ -8,11 +8,9 @@ import time
 root = Tk()
 ##root.geometry("1280x680+1600+250")
 
-##w=1287
-##h=712
+w=1287
+h=712
 
-w=2000
-h=800
 ws = root.winfo_screenwidth()
 hs = root.winfo_screenheight()
     # calculate position x, y
