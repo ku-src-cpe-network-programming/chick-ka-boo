@@ -8,8 +8,11 @@ import time
 root = Tk()
 ##root.geometry("1280x680+1600+250")
 
-w=1287
-h=712
+##w=1287
+##h=712
+
+w=2000
+h=800
 ws = root.winfo_screenwidth()
 hs = root.winfo_screenheight()
     # calculate position x, y
@@ -84,8 +87,8 @@ fCost3.pack(side=LEFT)
 
 
 ##=============email server=====================
-lblServer = Label(fRemail,font=('TH Sarabun New',15,'bold'),text = "เซิฟเวอร์",bg="#2b5797",bd=5,fg="#edb44e")
-lblEmail = Label(fRemail,font=('TH Sarabun New',15,'bold'),text = "อีเมล์",bg="#2b5797",bd=5,fg="#edb44e")
+lblServer = Label(fRemail,font=('TH Sarabun New',15,'bold'),text = "เซิร์ฟเวอร์",bg="#2b5797",bd=5,fg="#edb44e")
+lblEmail = Label(fRemail,font=('TH Sarabun New',15,'bold'),text = "อีเมล",bg="#2b5797",bd=5,fg="#edb44e")
 lblServer.grid(row=1,column=0)
 lblEmail.grid(row=2,column=0)
 lblSendfile = Label(fRsendfile_0,font=('TH Sarabun New',18,'bold'),text = "ส่งไฟล์: สำหนักงานใหญ่",bg="#2b5797",bd=10,fg="#edb44e")
@@ -218,9 +221,9 @@ ReceiptRef = StringVar()
 DateofOrder = StringVar()
 DateofOrder.set(time.strftime("%d/%m/%Y"))
 
-ChickenList = ["ไก่ทอดสไปค์ซี่","ไก่ทอดต้มยำ","ไก่นุ่ม","ข้าวยำไก่แซ่บ",
-            "ชุดไก่ทอดครอบครัว","ชุดไก่สารพัด","ไก่ทอดเกาหลี","ชุดไก่ปิคนิก",
-            "ชุดไก่ปิคนิก","เคบับไก่","เบอร์เกอร์ไก่","Ice-Cream Chicken"]
+ChickenList = ["ไก่ทอดสไปซี่","ไก่ทอดต้มยำ","ไก่นุ่ม","ข้าวยำไก่แซ่บ",
+            "ไก่ทอดชุดครอบครัว","ชุดไก่สารพัด","ไก่ทอดเกาหลี","ชุดไก่ปิคนิก",
+            "ชุดไก่ปิกนิก","เคบับไก่","เบอร์เกอร์ไก่","Ice-Cream Chicken"]
 
 VarChicken0 = IntVar()
 VarChicken1 = IntVar()
