@@ -8,11 +8,9 @@ import time
 root = Tk()
 ##root.geometry("1280x680+1600+250")
 
-#w=1287
-#h=712
+w=1287
+h=712
 
-w=1900
-h=800
 
 
 ws = root.winfo_screenwidth()
@@ -93,7 +91,7 @@ lblServer = Label(fRemail,font=('TH Sarabun New',15,'bold'),text = "เซิร
 lblEmail = Label(fRemail,font=('TH Sarabun New',15,'bold'),text = "อีเมล",bg="#2b5797",bd=5,fg="#edb44e")
 lblServer.grid(row=1,column=0)
 lblEmail.grid(row=2,column=0)
-lblSendfile = Label(fRsendfile_0,font=('TH Sarabun New',18,'bold'),text = "ส่งไฟล์: สำหนักงานใหญ่",bg="#2b5797",bd=10,fg="#edb44e")
+lblSendfile = Label(fRsendfile_0,font=('TH Sarabun New',18,'bold'),text = "ส่งไฟล์: สำนักงานใหญ่",bg="#2b5797",bd=10,fg="#edb44e")
 lblSendfile.grid(row=3,column=0)
 ##========== ส่วน หัว ป้ายชื่อ =========================================
 lblInfo = Label(Tops,font=('TH Sarabun New',35,'bold'),text = " TEXAS CHICKEN  (Chick-ka-boo)",bg="#2b5797",bd=10,fg="#edb44e")
