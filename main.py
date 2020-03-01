@@ -132,7 +132,7 @@ def sendFile():
     print("E-Mail\t: "+EntryEmail.get())
 
 def qExit():
-    qExit= messagebox.askyesno("Quit System!!!", "Do you want to quit?")
+    qExit= messagebox.askyesno("ออกจากระบบ","คุณต้องการออกจากระบบไหม?")
     if qExit > 0:
         root.destroy()
         return
