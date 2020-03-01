@@ -182,6 +182,7 @@ def chkbutton_value(chkValue,txtLabel,Entry):
 
 
 def CostofItem():
+    if VarChickenList[0].get() != 0 or VarChickenList[1].get() != 0 or VarChickenList[2].get() != 0 or VarChickenList[3].get() != 0 or VarChickenList[4].get() != 0 or VarChickenList[5].get() != 0 or VarChickenList[6].get() != 0 or VarChickenList[8].get() != 0 or VarChickenList[9].get() != 0 or VarChickenList[10].get() != 0:
        TotalChickenCost = 0
        ChickenPriceList = [50,50,50,50,50,50,50,50,50,50,50,50]
 
@@ -205,9 +206,9 @@ def CostofItem():
        TotalCost.set(TC)
 
 def Receipt():
-    if Chicken0 == true :
-        #Chicken0 == 0
-    #else:
+
+    if VarChickenList[0].get() != 0 or VarChickenList[1].get() != 0 or VarChickenList[2].get() != 0 or VarChickenList[3].get() != 0 or VarChickenList[4].get() != 0 or VarChickenList[5].get() != 0 or VarChickenList[6].get() != 0 or VarChickenList[8].get() != 0 or VarChickenList[9].get() != 0 or VarChickenList[10].get() != 0:
+
         txtReceipt.delete("1.0",END)
         x = random.randint(10908,500876)
         randomRef = str(x)
