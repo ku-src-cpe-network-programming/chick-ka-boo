@@ -8,8 +8,12 @@ import time
 root = Tk()
 ##root.geometry("1280x680+1600+250")
 
-w=1287
-h=712
+#w=1287
+#h=712
+
+w=1900
+h=800
+
 
 ws = root.winfo_screenwidth()
 hs = root.winfo_screenheight()
@@ -201,18 +205,21 @@ def CostofItem():
        TotalCost.set(TC)
 
 def Receipt():
-    txtReceipt.delete("1.0",END)
-    x = random.randint(10908,500876)
-    randomRef = str(x)
-    ReceiptRef.set("BILL"+randomRef)
-    txtReceipt.insert(END,'ใบเสร็จ หมายเลข:\t\t\t'+ ReceiptRef.get()  + '\t\t' + DateofOrder.get() + "\n")
-    txtReceipt.insert(END,'รายการ\t\t\t\t\t'+ 'จำนวน \n\n')
-    for i in range(12) :
-        if int(EntryChickenList[i].get()) > 0 :
-            txtReceipt.insert(END, ChickenList[i] +'\t\t\t\t\t'+ EntryChickenList[i].get() + '\n')
+    if Chicken0 == true :
+        #Chicken0 == 0
+    #else:
+        txtReceipt.delete("1.0",END)
+        x = random.randint(10908,500876)
+        randomRef = str(x)
+        ReceiptRef.set("BILL"+randomRef)
+        txtReceipt.insert(END,'ใบเสร็จ หมายเลข:\t\t\t'+ ReceiptRef.get()  + '\t\t' + DateofOrder.get() + "\n")
+        txtReceipt.insert(END,'รายการ\t\t\t\t\t'+ 'จำนวน \n\n')
+        for i in range(12) :
+            if int(EntryChickenList[i].get()) > 0 :
+                txtReceipt.insert(END, ChickenList[i] +'\t\t\t\t\t'+ EntryChickenList[i].get() + '\n')
 
-    txtReceipt.insert(END,'\nราคารวม : \t\t'+ CostofChicken.get() + '\n')
-    txtReceipt.insert(END,'ค่าบริการ : \t\t'+ ServiceCharge.get() + '\n')
+        txtReceipt.insert(END,'\nราคารวม : \t\t'+ CostofChicken.get() + '\n')
+        txtReceipt.insert(END,'ค่าบริการ : \t\t'+ ServiceCharge.get() + '\n')
 
 #====================== Variable Chicken =====================
 ReceiptRef = StringVar()
