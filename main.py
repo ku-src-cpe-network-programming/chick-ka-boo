@@ -84,11 +84,11 @@ fCost3.pack(side=LEFT)
 
 
 ##=============email server=====================
-lblServer = Label(fRemail,font=('TH Sarabun New',15,'bold'),text = "Server",bg="#2b5797",bd=5,fg="#edb44e")
-lblEmail = Label(fRemail,font=('TH Sarabun New',15,'bold'),text = "E-Mail",bg="#2b5797",bd=5,fg="#edb44e")
+lblServer = Label(fRemail,font=('TH Sarabun New',15,'bold'),text = "เซิฟเวอร์",bg="#2b5797",bd=5,fg="#edb44e")
+lblEmail = Label(fRemail,font=('TH Sarabun New',15,'bold'),text = "อีเมล์",bg="#2b5797",bd=5,fg="#edb44e")
 lblServer.grid(row=1,column=0)
 lblEmail.grid(row=2,column=0)
-lblSendfile = Label(fRsendfile_0,font=('TH Sarabun New',18,'bold'),text = "send file: principal office",bg="#2b5797",bd=10,fg="#edb44e")
+lblSendfile = Label(fRsendfile_0,font=('TH Sarabun New',18,'bold'),text = "ส่งไฟล์: สำหนักงานใหญ่",bg="#2b5797",bd=10,fg="#edb44e")
 lblSendfile.grid(row=3,column=0)
 ##========== ส่วน หัว ป้ายชื่อ =========================================
 lblInfo = Label(Tops,font=('TH Sarabun New',35,'bold'),text = " TEXAS CHICKEN  (Chick-ka-boo)",bg="#2b5797",bd=10,fg="#edb44e")
@@ -108,7 +108,7 @@ logo.grid(row=0,column=0)
 #============================= FTP Server =====================
 EntryServer = StringVar()
 
-widthEntryServer=52
+widthEntryServer=48
 txtServer = Entry(fRemail ,font=('TH Sarabun New',12,'bold'),bd=5,width=widthEntryServer,justify='left',textvariable=EntryServer, state = NORMAL)
 txtServer.grid(row=1,column =1)
 
@@ -183,20 +183,20 @@ def CostofItem():
        for i in range(12) :
              TotalChickenCost += int(EntryChickenList[i].get())* float(ChickenPriceList[i])
 
-       ChickensPrice = "B", str('%.2f'%(TotalChickenCost))
+       ChickensPrice = str('%.2f'%(TotalChickenCost)), "บาท"
        CostofChicken.set(ChickensPrice)
-       SC = "B", str('%.2f'%(1.59))
+       SC =  str('%.2f'%(1.59)), "บาท"
        ServiceCharge.set(SC)
 
        CostPlus = TotalChickenCost + 1.59
 
-       SubTotalofItems = "B", str('%.2f'%(CostPlus))
+       SubTotalofItems = str('%.2f'%(CostPlus)), "บาท"
        SubTotal.set(SubTotalofItems)
 
-       Tax = "B" , str('%.2f'%(CostPlus*0.15))
+       Tax = str('%.2f'%(CostPlus*0.15)), "บาท"
        PaidTax.set(Tax)
        TT = CostPlus * 0.15
-       TC = "B" , str('%.2f'%(CostPlus + TT))
+       TC = str('%.2f'%(CostPlus + TT)), "บาท"
        TotalCost.set(TC)
 
 def Receipt():
@@ -204,23 +204,23 @@ def Receipt():
     x = random.randint(10908,500876)
     randomRef = str(x)
     ReceiptRef.set("BILL"+randomRef)
-    txtReceipt.insert(END,'Receipt Ref:\t\t\t'+ ReceiptRef.get()  + '\t\t' + DateofOrder.get() + "\n")
-    txtReceipt.insert(END,'Items\t\t\t\t\t'+ 'Cost of Items \n\n')
+    txtReceipt.insert(END,'ใบเสร็จ หมายเลข:\t\t\t'+ ReceiptRef.get()  + '\t\t' + DateofOrder.get() + "\n")
+    txtReceipt.insert(END,'รายการ\t\t\t\t\t'+ 'จำนวน \n\n')
     for i in range(12) :
         if int(EntryChickenList[i].get()) > 0 :
             txtReceipt.insert(END, ChickenList[i] +'\t\t\t\t\t'+ EntryChickenList[i].get() + '\n')
 
-    txtReceipt.insert(END,'\nCost of Chickens : \t\t'+ CostofChicken.get() + '\n')
-    txtReceipt.insert(END,'Service Charge : \t\t'+ ServiceCharge.get() + '\n')
+    txtReceipt.insert(END,'\nราคารวม : \t\t'+ CostofChicken.get() + '\n')
+    txtReceipt.insert(END,'ค่าบริการ : \t\t'+ ServiceCharge.get() + '\n')
 
 #====================== Variable Chicken =====================
 ReceiptRef = StringVar()
 DateofOrder = StringVar()
 DateofOrder.set(time.strftime("%d/%m/%Y"))
 
-ChickenList = ["Coffee Chicken","Red Velvet Chicken","Black Forest Chicken","Boston Cream Chicken",
-            "Lagos Chocolate","Kilburn Chocolate Chicken","Carton Hill Chicken","Queen Park Chicken",
-            "Chicken Lad Manow","Chicken Boil","Fire Rice Chicken","Ice-Cream Chicken"]
+ChickenList = ["ไก่ทอดสไปค์ซี่","ไก่ทอดต้มยำ","ไก่นุ่ม","ข้าวยำไก่แซ่บ",
+            "ชุดไก่ทอดครอบครัว","ชุดไก่สารพัด","ไก่ทอดเกาหลี","ชุดไก่ปิคนิก",
+            "ชุดไก่ปิคนิก","เคบับไก่","เบอร์เกอร์ไก่","Ice-Cream Chicken"]
 
 VarChicken0 = IntVar()
 VarChicken1 = IntVar()
@@ -264,7 +264,7 @@ for x in EntryChickenList:
 #====================image chicka bool===============
 #================column 0=================
 menuSizeX=200
-menuSizeY=122
+menuSizeY=117
 menuSizeX2=268
 img_0 = Image.open("menu00.jpg")
 img_0 =  img_0.resize((menuSizeX, menuSizeY))
@@ -340,56 +340,56 @@ img_10.grid(row=0,column=3)
 """CoffeeChicken = Checkbutton(fChicken, text="Coffee Chicken \t",variable = var9,onvalue = 1, offvalue=0,
                     font=('TH Sarabun New',18,'bold')).grid(row= 0, column=0)"""
 Chicken0 = Checkbutton(fChicken00 , text=ChickenList[0],variable = VarChickenList[0] ,onvalue = 1, offvalue=0,
-                    font=('TH Sarabun New',12,'bold'),command=lambda:chkbutton_value(VarChickenList[0],txtChicken0,EntryChickenList[0])).grid(row= 0,column=0, sticky=W)
+                    font=('TH Sarabun New',14,'bold'),command=lambda:chkbutton_value(VarChickenList[0],txtChicken0,EntryChickenList[0])).grid(row= 0,column=0, sticky=W)
 Chicken1 = Checkbutton(fChicken00 , text=ChickenList[1],variable = VarChickenList[1],onvalue = 1, offvalue=0,
-                    font=('TH Sarabun New',12,'bold'),command=lambda:chkbutton_value(VarChickenList[1],txtChicken1,EntryChickenList[1])).grid(row= 0,column=3, sticky=W)
+                    font=('TH Sarabun New',14,'bold'),command=lambda:chkbutton_value(VarChickenList[1],txtChicken1,EntryChickenList[1])).grid(row= 0,column=3, sticky=W)
 Chicken2 = Checkbutton(fChicken00 , text=ChickenList[2],variable = VarChickenList[2],onvalue = 1, offvalue=0,
-                    font=('TH Sarabun New',12,'bold'),command=lambda:chkbutton_value(VarChickenList[2],txtChicken2,EntryChickenList[2])).grid(row= 0,column=5, sticky=W)
+                    font=('TH Sarabun New',14,'bold'),command=lambda:chkbutton_value(VarChickenList[2],txtChicken2,EntryChickenList[2])).grid(row= 0,column=5, sticky=W)
 Chicken3 = Checkbutton(fChicken00 , text=ChickenList[3],variable = VarChickenList[3],onvalue = 1, offvalue=0,
-                    font=('TH Sarabun New',12,'bold'),command=lambda:chkbutton_value(VarChickenList[3],txtChicken3,EntryChickenList[3])).grid(row= 0,column=7, sticky=W)
+                    font=('TH Sarabun New',14,'bold'),command=lambda:chkbutton_value(VarChickenList[3],txtChicken3,EntryChickenList[3])).grid(row= 0,column=7, sticky=W)
 
 Chicken4 = Checkbutton(fChicken11 , text=ChickenList[4],variable = VarChickenList[4],onvalue = 1, offvalue=0,
-                    font=('TH Sarabun New',12,'bold'),command=lambda:chkbutton_value(VarChickenList[4],txtChicken4,EntryChickenList[4])).grid(row= 1,column=0, sticky=W)
+                    font=('TH Sarabun New',14,'bold'),command=lambda:chkbutton_value(VarChickenList[4],txtChicken4,EntryChickenList[4])).grid(row= 1,column=0, sticky=W)
 Chicken5 = Checkbutton(fChicken11, text=ChickenList[5],variable = VarChickenList[5],onvalue = 1, offvalue=0,
-                    font=('TH Sarabun New',12,'bold'),command=lambda:chkbutton_value(VarChickenList[5],txtChicken5,EntryChickenList[5])).grid(row= 1,column=2, sticky=W)
+                    font=('TH Sarabun New',14,'bold'),command=lambda:chkbutton_value(VarChickenList[5],txtChicken5,EntryChickenList[5])).grid(row= 1,column=2, sticky=W)
 Chicken6 = Checkbutton(fChicken11, text=ChickenList[6],variable = VarChickenList[6],onvalue = 1, offvalue=0,
-                    font=('TH Sarabun New',12,'bold'),command=lambda:chkbutton_value(VarChickenList[6],txtChicken6,EntryChickenList[6])).grid(row= 1,column=4, sticky=W)
+                    font=('TH Sarabun New',14,'bold'),command=lambda:chkbutton_value(VarChickenList[6],txtChicken6,EntryChickenList[6])).grid(row= 1,column=4, sticky=W)
 #Chicken7 = Checkbutton(fChicken1 , text=ChickenList[7],variable = VarChickenList[7],onvalue = 1, offvalue=0,
-                    #font=('TH Sarabun New',12,'bold'),command=lambda:chkbutton_value(VarChickenList[7],txtChicken7,EntryChickenList[7])).grid(row= 7, sticky=W)
+                    #font=('TH Sarabun New',14,'bold'),command=lambda:chkbutton_value(VarChickenList[7],txtChicken7,EntryChickenList[7])).grid(row= 7, sticky=W)
 
 Chicken8 = Checkbutton(fChicken22, text=ChickenList[8],variable = VarChickenList[8],onvalue = 1, offvalue=0,
-                    font=('TH Sarabun New',12,'bold'),command=lambda:chkbutton_value(VarChickenList[8],txtChicken8,EntryChickenList[8])).grid(row= 1,column=0, sticky=W)
+                    font=('TH Sarabun New',14,'bold'),command=lambda:chkbutton_value(VarChickenList[8],txtChicken8,EntryChickenList[8])).grid(row= 1,column=0, sticky=W)
 Chicken9 = Checkbutton(fChicken22 , text=ChickenList[9],variable = VarChickenList[9],onvalue = 1, offvalue=0,
-                    font=('TH Sarabun New',12,'bold'),command=lambda:chkbutton_value(VarChickenList[9],txtChicken9,EntryChickenList[9])).grid(row= 1,column=2, sticky=W)
+                    font=('TH Sarabun New',14,'bold'),command=lambda:chkbutton_value(VarChickenList[9],txtChicken9,EntryChickenList[9])).grid(row= 1,column=2, sticky=W)
 Chicken10 = Checkbutton(fChicken22 , text=ChickenList[10],variable = VarChickenList[10],onvalue = 1, offvalue=0,
-                    font=('TH Sarabun New',12,'bold'),command=lambda:chkbutton_value(VarChickenList[10],txtChicken10,EntryChickenList[10])).grid(row= 1,column=4, sticky=W)
+                    font=('TH Sarabun New',14,'bold'),command=lambda:chkbutton_value(VarChickenList[10],txtChicken10,EntryChickenList[10])).grid(row= 1,column=4, sticky=W)
 #Chicken11 = Checkbutton(fChicken2 , text=ChickenList[11],variable = VarChickenList[11],onvalue = 1, offvalue=0,
                     #font=('TH Sarabun New',12,'bold'),command=lambda:chkbutton_value(VarChickenList[11],txtChicken11,EntryChickenList[11])).grid(row= 11, sticky=W)
 
 #=======================Enter Widgets for Chicken =======================
-txtChicken0 = Entry(fChicken00 ,font=('TH Sarabun New',12,'bold'),bd=5,width=14,justify='right',textvariable=EntryChickenList[0],state = DISABLED)
+txtChicken0 = Entry(fChicken00 ,font=('TH Sarabun New',12,'bold'),bd=5,width=13,justify='right',textvariable=EntryChickenList[0],state = DISABLED)
 txtChicken0.grid(row=0,column =2)
-txtChicken1 = Entry(fChicken00 ,font=('TH Sarabun New',12,'bold'),bd=5,width=11,justify='right',textvariable=EntryChickenList[1],state = DISABLED)
+txtChicken1 = Entry(fChicken00 ,font=('TH Sarabun New',12,'bold'),bd=5,width=16,justify='right',textvariable=EntryChickenList[1],state = DISABLED)
 txtChicken1.grid(row=0,column =4)
-txtChicken2 = Entry(fChicken00 ,font=('TH Sarabun New',12,'bold'),bd=5,width=9,justify='right',textvariable=EntryChickenList[2],state = DISABLED)
+txtChicken2 = Entry(fChicken00 ,font=('TH Sarabun New',12,'bold'),bd=5,width=22,justify='right',textvariable=EntryChickenList[2],state = DISABLED)
 txtChicken2.grid(row=0,column =6)
-txtChicken3 = Entry(fChicken00 ,font=('TH Sarabun New',12,'bold'),bd=5,width=8,justify='right',textvariable=EntryChickenList[3],state = DISABLED)
+txtChicken3 = Entry(fChicken00 ,font=('TH Sarabun New',12,'bold'),bd=5,width=13,justify='right',textvariable=EntryChickenList[3],state = DISABLED)
 txtChicken3.grid(row=0,column =8)
 
-txtChicken4 = Entry(fChicken11 ,font=('TH Sarabun New',12,'bold'),bd=5,width=25,justify='right',textvariable=EntryChickenList[4],state = DISABLED)
+txtChicken4 = Entry(fChicken11 ,font=('TH Sarabun New',12,'bold'),bd=5,width=19,justify='right',textvariable=EntryChickenList[4],state = DISABLED)
 txtChicken4.grid(row=1,column =1)
-txtChicken5 = Entry(fChicken11 ,font=('TH Sarabun New',12,'bold'),bd=5,width=15,justify='right',textvariable=EntryChickenList[5],state = DISABLED)
+txtChicken5 = Entry(fChicken11 ,font=('TH Sarabun New',12,'bold'),bd=5,width=26,justify='right',textvariable=EntryChickenList[5],state = DISABLED)
 txtChicken5.grid(row=1,column =3)
-txtChicken6 = Entry(fChicken11 ,font=('TH Sarabun New',12,'bold'),bd=5,width=22,justify='right',textvariable=EntryChickenList[6],state = DISABLED)
+txtChicken6 = Entry(fChicken11 ,font=('TH Sarabun New',12,'bold'),bd=5,width=25,justify='right',textvariable=EntryChickenList[6],state = DISABLED)
 txtChicken6.grid(row=1,column =5)
 #txtChicken7 = Entry(fChicken1 ,font=('TH Sarabun New',12,'bold'),bd=5,width=6,justify='left',textvariable=EntryChickenList[7],state = DISABLED)
 #txtChicken7.grid(row=7,column =1)
 
-txtChicken8 = Entry(fChicken22 ,font=('TH Sarabun New',12,'bold'),bd=5,width=21,justify='right',textvariable=EntryChickenList[7],state = DISABLED)
+txtChicken8 = Entry(fChicken22 ,font=('TH Sarabun New',12,'bold'),bd=5,width=27,justify='right',textvariable=EntryChickenList[7],state = DISABLED)
 txtChicken8.grid(row=1,column =1)
-txtChicken9 = Entry(fChicken22 ,font=('TH Sarabun New',12,'bold'),bd=5,width=28,justify='right',textvariable=EntryChickenList[8],state = DISABLED)
+txtChicken9 = Entry(fChicken22 ,font=('TH Sarabun New',12,'bold'),bd=5,width=31,justify='right',textvariable=EntryChickenList[8],state = DISABLED)
 txtChicken9.grid(row=1,column =3)
-txtChicken10 = Entry(fChicken22 ,font=('TH Sarabun New',12,'bold'),bd=5,width=24,justify='right',textvariable=EntryChickenList[9],state = DISABLED)
+txtChicken10 = Entry(fChicken22 ,font=('TH Sarabun New',12,'bold'),bd=5,width=26,justify='right',textvariable=EntryChickenList[9],state = DISABLED)
 txtChicken10.grid(row=1,column =5)
 
 #===============================Variable Calculation =====================
@@ -402,7 +402,7 @@ RecieveMoney = StringVar()
 ChangeMoney = StringVar()
 
 #================================== Receipt Information ===================
-lblReceipt = Label(fReceipt,font=('TH Sarabun New',13,'bold'), text="Receipt", bd=2,anchor='w' ,fg="#edb44e",bg="#2b5797")
+lblReceipt = Label(fReceipt,font=('TH Sarabun New',13,'bold'), text="ใบเสร็จ", bd=2,anchor='w' ,fg="#edb44e",bg="#2b5797")
 lblReceipt.grid(row=0,column=0, sticky=W)
 txtReceipt = Text(fReceipt,font=('TH Sarabun New',12,'bold'), bd=2,width=73,height=17,bg="white")
 txtReceipt.grid(row=1,column=0)
@@ -412,44 +412,44 @@ lblthx = Label(fCost1,font=('TH Sarabun New',12,'bold'),text="Your order Texas",
 lblthx.grid(row=0,column=0,sticky=W)
 lblthx = Label(fCost1,font=('TH Sarabun New',12,'bold'),text="Chicken (Chick-ka-boo)",bd=5,bg="Dark Orange")
 lblthx.grid(row=0,column=1,sticky=W)
-lblCostofChicken = Label(fCost1,font=('TH Sarabun New',12,'bold'),text="Cost of Chickens",bd=5,bg="Dark Orange")
+lblCostofChicken = Label(fCost1,font=('TH Sarabun New',12,'bold'),text="ราคารวม",bd=5,bg="Dark Orange")
 lblCostofChicken.grid(row=1,column=0,sticky=W)
 txtCostofChicken=Entry(fCost1,font=('TH Sarabun New',12,'bold'),bd=5,justify='right',
                       textvariable=CostofChicken,bg="white")
 txtCostofChicken.grid(row=1,column=1,sticky=W)
 
-lblServiceCharge = Label(fCost1,font=('TH Sarabun New',12,'bold'),text="Service Charge",bd=5,bg="Dark Orange")
+lblServiceCharge = Label(fCost1,font=('TH Sarabun New',12,'bold'),text="ค่าบริการ",bd=5,bg="Dark Orange")
 lblServiceCharge.grid(row=2,column=0,sticky=W)
 txtServiceCharge=Entry(fCost1,font=('TH Sarabun New',12,'bold'),bd=5,justify='right',
                        textvariable=ServiceCharge,bg="white")
 txtServiceCharge.grid(row=2,column=1,sticky=W)
 
 #=========================== Payment Information========================
-lblPaidTax = Label(fCost2,font=('TH Sarabun New',12,'bold'),text="Paid Tax",bd=5,bg="Dark Orange")
+lblPaidTax = Label(fCost2,font=('TH Sarabun New',12,'bold'),text="ภาษี",bd=5,bg="Dark Orange")
 lblPaidTax.grid(row=0,column=0,sticky=W)
 txtPaidTax=Entry(fCost2,font=('TH Sarabun New',12,'bold'),bd=5,justify='right',
                  textvariable=PaidTax,bg="white")
 txtPaidTax.grid(row=0,column=1,sticky=W)
 
-lblSubTotal = Label(fCost2,font=('TH Sarabun New',12,'bold'),text="Sub Total",bd=5,bg="Dark Orange")
+lblSubTotal = Label(fCost2,font=('TH Sarabun New',12,'bold'),text="ราคารวมค่าบริการ",bd=5,bg="Dark Orange")
 lblSubTotal.grid(row=1,column=0,sticky=W)
 txtSubTotal=Entry(fCost2,font=('TH Sarabun New',12,'bold'),bd=5,justify='right',
                   textvariable=SubTotal,bg="white")
 txtSubTotal.grid(row=1,column=1,sticky=W)
 
-lblTotalCost = Label(fCost2,font=('TH Sarabun New',12,'bold'),text="Total",bd=5,bg="Dark Orange")
+lblTotalCost = Label(fCost2,font=('TH Sarabun New',12,'bold'),text="ราคารวมทั้งหมด",bd=5,bg="Dark Orange")
 lblTotalCost.grid(row=2,column=0,sticky=W)
 txtTotalCost=Entry(fCost2,font=('TH Sarabun New',12,'bold'),bd=5,justify='right',
                    textvariable=TotalCost,bg="white")
 txtTotalCost.grid(row=2,column=1,sticky=W)
 
-lblRecieveMoney = Label(fCost3,font=('TH Sarabun New',12,'bold'),text="Recieve Money",bd=5,bg="Dark Orange")
+lblRecieveMoney = Label(fCost3,font=('TH Sarabun New',12,'bold'),text="รับเงิน",bd=5,bg="Dark Orange")
 lblRecieveMoney.grid(row=0,column=0,sticky=W)
 txtRecieveMoney=Entry(fCost3,font=('TH Sarabun New',12,'bold'),bd=5,justify='right',
                    textvariable=RecieveMoney,bg="white")
 txtRecieveMoney.grid(row=0,column=1,sticky=W)
 
-lblChangeMoney = Label(fCost3,font=('TH Sarabun New',12,'bold'),text="Change Money",bd=5,bg="Dark Orange")
+lblChangeMoney = Label(fCost3,font=('TH Sarabun New',12,'bold'),text="เงินทอน",bd=5,bg="Dark Orange")
 lblChangeMoney.grid(row=1,column=0,sticky=W)
 txtChangeMoney=Entry(fCost3,font=('TH Sarabun New',12,'bold'),bd=5,justify='right',
                    textvariable=ChangeMoney,bg="white")
@@ -463,20 +463,20 @@ lblEmpty.grid(row=2,column=0,sticky=W)
 widthButtonTotal=4
 padxButtonTotal=32
 btnTotal=Button(fButton,padx=padxButtonTotal, fg="black",font=('TH Sarabun New',18,'bold'),width=widthButtonTotal,
-                text="Total",command=CostofItem).grid(row=0, column=0)
+                text="คิดเงิน",command=CostofItem).grid(row=0, column=0)
 btnReceipt=Button(fButton,padx=padxButtonTotal, fg="black",font=('TH Sarabun New',18,'bold'),width=widthButtonTotal,
-                text="Receipt",command=Receipt).grid(row=0, column=1)
+                text="พิมพ์ใบเสร็จ",command=Receipt).grid(row=0, column=1)
 btnReset=Button(fButton,padx=padxButtonTotal, fg="black",font=('TH Sarabun New',18,'bold'),width=widthButtonTotal,
-                text="Reset",command=Reset).grid(row=0, column=2)
+                text="ล้าง",command=Reset).grid(row=0, column=2)
 btnExit=Button(fButton,padx=padxButtonTotal, fg="black",font=('TH Sarabun New',18,'bold'),width=widthButtonTotal,
-                text="Exit",command=qExit).grid(row=0, column=3)
+                text="ออก",command=qExit).grid(row=0, column=3)
     #===== btn email server=============
-btnServer=Button(fRemail,padx=16, fg="black",font=('TH Sarabun New',12,'bold'),width=5,
-                text="Access",command=serverAccess).grid(row=1, column=2)
-btnEmail=Button(fRemail,padx=16, fg="black",font=('TH Sarabun New',12,'bold'),width=5,
-                text="Access",command=emailAccess).grid(row=2, column=2)
+btnServer=Button(fRemail,padx=22, fg="black",font=('TH Sarabun New',12,'bold'),width=5,
+                text="เปลี่ยนเซิฟเวอร์",command=serverAccess).grid(row=1, column=2)
+btnEmail=Button(fRemail,padx=22, fg="black",font=('TH Sarabun New',12,'bold'),width=5,
+                text="เปลี่ยนอีเมล์",command=emailAccess).grid(row=2, column=2)
 btnSendFile=Button(fRsendfile_1,padx=30, fg="black",font=('TH Sarabun New',18,'bold'),width=5,
-                text="Access",command=sendFile).grid(row=3, column=1)
+                text="ยืนยัน",command=sendFile).grid(row=3, column=1)
 
 
 
