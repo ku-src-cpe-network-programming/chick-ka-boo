@@ -178,6 +178,7 @@ def chkbutton_value(chkValue,txtLabel,Entry):
 
 
 def CostofItem():
+    if VarChickenList[0].get() != 0 or VarChickenList[1].get() != 0 or VarChickenList[2].get() != 0 or VarChickenList[3].get() != 0 or VarChickenList[4].get() != 0 or VarChickenList[5].get() != 0 or VarChickenList[6].get() != 0 or VarChickenList[8].get() != 0 or VarChickenList[9].get() != 0 or VarChickenList[10].get() != 0:
        TotalChickenCost = 0
        ChickenPriceList = [50,50,50,50,50,50,50,50,50,50,50,50]
 
@@ -201,18 +202,19 @@ def CostofItem():
        TotalCost.set(TC)
 
 def Receipt():
-    txtReceipt.delete("1.0",END)
-    x = random.randint(10908,500876)
-    randomRef = str(x)
-    ReceiptRef.set("BILL"+randomRef)
-    txtReceipt.insert(END,'ใบเสร็จ หมายเลข:\t\t\t'+ ReceiptRef.get()  + '\t\t' + DateofOrder.get() + "\n")
-    txtReceipt.insert(END,'รายการ\t\t\t\t\t'+ 'จำนวน \n\n')
-    for i in range(12) :
-        if int(EntryChickenList[i].get()) > 0 :
-            txtReceipt.insert(END, ChickenList[i] +'\t\t\t\t\t'+ EntryChickenList[i].get() + '\n')
-
-    txtReceipt.insert(END,'\nราคารวม : \t\t'+ CostofChicken.get() + '\n')
-    txtReceipt.insert(END,'ค่าบริการ : \t\t'+ ServiceCharge.get() + '\n')
+    if VarChickenList[0].get() != 0 or VarChickenList[1].get() != 0 or VarChickenList[2].get() != 0 or VarChickenList[3].get() != 0 or VarChickenList[4].get() != 0 or VarChickenList[5].get() != 0 or VarChickenList[6].get() != 0 or VarChickenList[8].get() != 0 or VarChickenList[9].get() != 0 or VarChickenList[10].get() != 0:
+        txtReceipt.delete("1.0",END)
+        x = random.randint(10908,500876)
+        randomRef = str(x)
+        ReceiptRef.set("BILL"+randomRef)
+        txtReceipt.insert(END,'ใบเสร็จ หมายเลข:\t\t\t'+ ReceiptRef.get()  + '\t\t' + DateofOrder.get() + "\n")
+        txtReceipt.insert(END,'รายการ\t\t\t\t\t'+ 'จำนวน \n\n')
+        for i in range(12) :
+            if int(EntryChickenList[i].get()) > 0 :
+                txtReceipt.insert(END, ChickenList[i] +'\t\t\t\t\t'+ EntryChickenList[i].get() + '\n')
+    
+        txtReceipt.insert(END,'\nราคารวม : \t\t'+ CostofChicken.get() + '\n')
+        txtReceipt.insert(END,'ค่าบริการ : \t\t'+ ServiceCharge.get() + '\n')
 
 #====================== Variable Chicken =====================
 ReceiptRef = StringVar()
