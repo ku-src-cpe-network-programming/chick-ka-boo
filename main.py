@@ -4,6 +4,7 @@ from PIL import Image, ImageTk
 
 import random
 import time
+import math
 
 root = Tk()
 ##root.geometry("1280x680+1600+250")
@@ -168,7 +169,7 @@ def FrameCostReset():
     SubTotal.set("")
     TotalCost.set("")
     CostofChicken.set("")
-    RecieveMoney.set("")
+    ReceiveMoney.set("")
     ChangeMoney.set("")
 
 def chkbutton_value(chkValue,txtLabel,Entry):
@@ -179,46 +180,135 @@ def chkbutton_value(chkValue,txtLabel,Entry):
         Entry.set("0")
 
 
+total=0
+ChickensPrice=0
+ChickPriceList = [50,50,50,50,50,50,50,50,50,50,50,50]
+Service=1.59
+changeM=0
 def CostofItem():
     if VarChickenList[0].get() != 0 or VarChickenList[1].get() != 0 or VarChickenList[2].get() != 0 or VarChickenList[3].get() != 0 or VarChickenList[4].get() != 0 or VarChickenList[5].get() != 0 or VarChickenList[6].get() != 0 or VarChickenList[8].get() != 0 or VarChickenList[9].get() != 0 or VarChickenList[10].get() != 0:
-       TotalChickenCost = 0
-       ChickenPriceList = [50,50,50,50,50,50,50,50,50,50,50,50]
+        TotalChickenCost = 0
 
-       for i in range(12) :
-             TotalChickenCost += int(EntryChickenList[i].get())* float(ChickenPriceList[i])
+        global ChickPriceList,Service,changeM,total,ChickensPrice
 
-       ChickensPrice = str('%.2f'%(TotalChickenCost)), "บาท"
-       CostofChicken.set(ChickensPrice)
-       SC =  str('%.2f'%(1.59)), "บาท"
-       ServiceCharge.set(SC)
+        for i in range(12) :
+            TotalChickenCost += int(EntryChickenList[i].get())* float(ChickPriceList[i])
+        ChickensPrice = str('%.2f'%(TotalChickenCost)), "บาท"
+        CostofChicken.set(ChickensPrice)
 
-       CostPlus = TotalChickenCost + 1.59
+        if(TotalChickenCost!=0):
+            SC =  str('%.2f'%(Service)), "บาท"
+            ServiceCharge.set(SC)
+            CostPlus = TotalChickenCost + Service
+            SubTotalofItems = str('%.2f'%(CostPlus)), "บาท"
+            SubTotal.set(SubTotalofItems)
+    
+            Tax = str('%.2f'%(CostPlus*0.07)), "บาท"
+            PaidTax.set(Tax)
+            TT = CostPlus * 0.07
+            total= CostPlus + TT
+            TC = str('%.2f'%(CostPlus + TT)), "บาท"
+            TotalCost.set(TC)
 
-       SubTotalofItems = str('%.2f'%(CostPlus)), "บาท"
-       SubTotal.set(SubTotalofItems)
+            changeM=float(ReceiveMoney.get())-total
+            changeMoney = str('%.2f'%(changeM)),"บาท"
+            ChangeMoney.set(changeMoney)
+            
 
-       Tax = str('%.2f'%(CostPlus*0.15)), "บาท"
-       PaidTax.set(Tax)
-       TT = CostPlus * 0.15
-       TC = str('%.2f'%(CostPlus + TT)), "บาท"
-       TotalCost.set(TC)
+def number_format(num, places=0):
+    return '{:20,.2f}'.format(num)
 
+def ThaiBahtConversion(amount_number):
+    amount_number = number_format(amount_number, 2).replace(" ","")
+    pt = amount_number.find(".")
+    number,fraction = "",""
+    amount_number1 = amount_number.split('.')
+    if (pt == False):
+        number = amount_number
+    else:
+        amount_number = amount_number.split('.')
+        number = amount_number[0]
+        fraction = int(amount_number1[1]) 
+    ret = ""
+    number=eval(number.replace(",",""))
+    baht = ReadNumber(number)
+    if(number==0.0):
+        return "ศูนย์บาทถ้วน"
+    if (baht != ""):
+        ret += baht + "บาท"
+    satang = ReadNumber(fraction)
+    if (satang != ""):
+        ret += satang + "สตางค์"
+    else:
+        ret += "ถ้วน"
+    return ret
+ 
+#อ่านจำนวนตัวเลขภาษาไทย
+def ReadNumber(number):
+    position_call = ["แสน", "หมื่น", "พัน", "ร้อย", "สิบ", ""]
+    number_call = ["", "หนึ่ง", "สอง", "สาม","สี่", "ห้า", "หก", "เจ็ด", "แปด", "เก้า"]
+    number = number
+    ret = ""
+    if (number == 0): return ret
+    if (number > 1000000):
+        ret += ReadNumber(int(number / 1000000)) + "ล้าน"
+        number = int(math.fmod(number, 1000000))
+    divider = 100000
+    pos = 0
+    while(number > 0):
+        d=int(number/divider)
+        if (divider == 10) and (d == 2):
+            ret += "ยี่"
+        elif (divider == 10) and (d == 1):
+            ret += ""
+        elif ((divider == 1) and (d == 1) and (ret != "")):
+            ret += "เอ็ด"
+        else:
+            ret += number_call[d]
+        if(d):
+            ret += position_call[pos]
+        else:
+            ret += ""
+        number=number % divider
+        divider=divider / 10
+        pos += 1
+    return ret
+
+totalday=0       
 def Receipt():
-
     if VarChickenList[0].get() != 0 or VarChickenList[1].get() != 0 or VarChickenList[2].get() != 0 or VarChickenList[3].get() != 0 or VarChickenList[4].get() != 0 or VarChickenList[5].get() != 0 or VarChickenList[6].get() != 0 or VarChickenList[8].get() != 0 or VarChickenList[9].get() != 0 or VarChickenList[10].get() != 0:
 
+        shop = "Chick-ka-boo"
+        fileName = time.strftime(shop+"%Y%b%d")+".txt"
+        rg = open(fileName,'a',encoding="utf-8")
+    
         txtReceipt.delete("1.0",END)
         x = random.randint(10908,500876)
         randomRef = str(x)
         ReceiptRef.set("BILL"+randomRef)
-        txtReceipt.insert(END,'ใบเสร็จ หมายเลข:\t\t\t'+ ReceiptRef.get()  + '\t\t' + DateofOrder.get() + "\n")
-        txtReceipt.insert(END,'รายการ\t\t\t\t\t'+ 'จำนวน \n\n')
+        txtReceipt.insert(END,'หมายเลขใบเสร็จ :\t\t\t'+ ReceiptRef.get()  + '\t\t' + DateofOrder.get() + "\n")
+        txtReceipt.insert(END,'รายการ\t\t\t'+ 'จำนวน \t\t'+ " ราคา  \n\n")
+
+        rg.write('หมายเลขใบเสร็จ:'+ReceiptRef.get()+ '\t\t' + DateofOrder.get() + "\n")
+        rg.write('รายการ\t\t\t\t'+ 'จำนวน \t\t'+ " ราคา  \n\n")
+        
         for i in range(12) :
             if int(EntryChickenList[i].get()) > 0 :
-                txtReceipt.insert(END, ChickenList[i] +'\t\t\t\t\t'+ EntryChickenList[i].get() + '\n')
+                
+                txtReceipt.insert(END, ChickenList[i] +'\t\t\t'+ str(int(EntryChickenList[i].get())) + "\t\t" + str( '%.2f'%(ChickPriceList[i]* int(EntryChickenList[i].get()) ) ) +'\n')
+                rg.write(ChickenList[i] +'\t\t\t'+  str(int(EntryChickenList[i].get())) + "\t\t" +  str( '%.2f'%(ChickPriceList[i]* int(EntryChickenList[i].get()) ) ) +'\n')
 
-        txtReceipt.insert(END,'\nราคารวม : \t\t'+ CostofChicken.get() + '\n')
-        txtReceipt.insert(END,'ค่าบริการ : \t\t'+ ServiceCharge.get() + '\n')
+        txtReceipt.insert(END,'\nค่าบริการ : \t\t'+ ServiceCharge.get() +" ( "+ThaiBahtConversion(Service) + ' )\n')        
+        txtReceipt.insert(END,'ราคารวมสุทธิ : \t\t'+ TotalCost.get() +" ( "+ThaiBahtConversion(total) + ' )\n')
+        txtReceipt.insert(END,'รับเงิน : \t\t'+"('"+ ReceiveMoney.get() +"','บาท') ( "+ThaiBahtConversion(int(ReceiveMoney.get())) + ' )\n')
+        txtReceipt.insert(END,'เงินทอน : \t\t'+ ChangeMoney.get() +" ( "+ThaiBahtConversion(changeM) + ' )\n')
+
+        rg.write('\nค่าบริการ:\t\t'+"('"+ str(Service) +"' ,'บาท') ( "+ThaiBahtConversion(Service) + ' )\n')
+        rg.write('ราคารวมสุทธิ:\t'+"('"+str('%.2f'%(total)) +"' ,'บาท') ( "+ThaiBahtConversion(total) + ' )\n')
+        rg.write('รับเงิน : \t\t'+"('"+ ReceiveMoney.get() +"','บาท') ( "+ThaiBahtConversion(int(ReceiveMoney.get())) + ' )\n')
+        rg.write('เงินทอน : \t\t'+ ChangeMoney.get() + "( "+ThaiBahtConversion(changeM) + ' )\n')
+        rg.write("---------------------------------------------------------------\n\n")
+        rg.close()
 
 #====================== Variable Chicken =====================
 ReceiptRef = StringVar()
@@ -405,7 +495,7 @@ SubTotal = StringVar()
 TotalCost = StringVar()
 CostofChicken = StringVar()
 ServiceCharge = StringVar()
-RecieveMoney = StringVar()
+ReceiveMoney = StringVar()
 ChangeMoney = StringVar()
 
 #================================== Receipt Information ===================
@@ -450,11 +540,11 @@ txtTotalCost=Entry(fCost2,font=('TH Sarabun New',12,'bold'),bd=5,justify='right'
                    textvariable=TotalCost,bg="white")
 txtTotalCost.grid(row=2,column=1,sticky=W)
 
-lblRecieveMoney = Label(fCost3,font=('TH Sarabun New',12,'bold'),text="รับเงิน",bd=5,bg="Dark Orange")
-lblRecieveMoney.grid(row=0,column=0,sticky=W)
-txtRecieveMoney=Entry(fCost3,font=('TH Sarabun New',12,'bold'),bd=5,justify='right',
-                   textvariable=RecieveMoney,bg="white")
-txtRecieveMoney.grid(row=0,column=1,sticky=W)
+lblReceiveMoney = Label(fCost3,font=('TH Sarabun New',12,'bold'),text="รับเงิน",bd=5,bg="Dark Orange")
+lblReceiveMoney.grid(row=0,column=0,sticky=W)
+txtReceiveMoney=Entry(fCost3,font=('TH Sarabun New',12,'bold'),bd=5,justify='right',
+                   textvariable=ReceiveMoney,bg="white")
+txtReceiveMoney.grid(row=0,column=1,sticky=W)
 
 lblChangeMoney = Label(fCost3,font=('TH Sarabun New',12,'bold'),text="เงินทอน",bd=5,bg="Dark Orange")
 lblChangeMoney.grid(row=1,column=0,sticky=W)
