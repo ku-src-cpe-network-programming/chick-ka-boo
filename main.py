@@ -185,11 +185,13 @@ ChickensPrice=0
 ChickPriceList = [50,50,50,50,50,50,50,50,50,50,50,50]
 Service=1.59
 changeM=0
+changeMoney=""
+
 def CostofItem():
     if VarChickenList[0].get() != 0 or VarChickenList[1].get() != 0 or VarChickenList[2].get() != 0 or VarChickenList[3].get() != 0 or VarChickenList[4].get() != 0 or VarChickenList[5].get() != 0 or VarChickenList[6].get() != 0 or VarChickenList[8].get() != 0 or VarChickenList[9].get() != 0 or VarChickenList[10].get() != 0:
         TotalChickenCost = 0
 
-        global ChickPriceList,Service,changeM,total,ChickensPrice
+        global ChickPriceList,Service,changeM,total,ChickensPrice,changeMoney
 
         for i in range(12) :
             TotalChickenCost += int(EntryChickenList[i].get())* float(ChickPriceList[i])
@@ -211,7 +213,13 @@ def CostofItem():
             TotalCost.set(TC)
 
             changeM=float(ReceiveMoney.get())-total
-            changeMoney = str('%.2f'%(changeM)),"บาท"
+            
+            if(round(changeM,1)==0):
+                changeMoney = "0.00 บาท"
+            elif(round(changeM,1)<0):
+                changeMoney = "***จ่ายยังไม่ครบ***"
+            elif(round(changeM,1)>0):
+                changeMoney = str('%.2f'%(changeM)),"บาท"
             ChangeMoney.set(changeMoney)
             
 
@@ -277,38 +285,41 @@ def ReadNumber(number):
 totalday=0       
 def Receipt():
     if VarChickenList[0].get() != 0 or VarChickenList[1].get() != 0 or VarChickenList[2].get() != 0 or VarChickenList[3].get() != 0 or VarChickenList[4].get() != 0 or VarChickenList[5].get() != 0 or VarChickenList[6].get() != 0 or VarChickenList[8].get() != 0 or VarChickenList[9].get() != 0 or VarChickenList[10].get() != 0:
-
-        shop = "Chick-ka-boo"
-        fileName = time.strftime(shop+"%Y%b%d")+".txt"
-        rg = open(fileName,'a',encoding="utf-8")
-    
-        txtReceipt.delete("1.0",END)
-        x = random.randint(10908,500876)
-        randomRef = str(x)
-        ReceiptRef.set("BILL"+randomRef)
-        txtReceipt.insert(END,'หมายเลขใบเสร็จ :\t\t\t'+ ReceiptRef.get()  + '\t\t' + DateofOrder.get() + "\n")
-        txtReceipt.insert(END,'รายการ\t\t\t'+ 'จำนวน \t\t'+ " ราคา  \n\n")
-
-        rg.write('หมายเลขใบเสร็จ:'+ReceiptRef.get()+ '\t\t' + DateofOrder.get() + "\n")
-        rg.write('รายการ\t\t\t\t'+ 'จำนวน \t\t'+ " ราคา  \n\n")
+        if(round(changeM,1)>=0):
+            shop = "Chick-ka-boo"
+            fileName = time.strftime(shop+"%Y%b%d")+".txt"
+            rg = open(fileName,'a',encoding="utf-8")
         
-        for i in range(12) :
-            if int(EntryChickenList[i].get()) > 0 :
-                
-                txtReceipt.insert(END, ChickenList[i] +'\t\t\t'+ str(int(EntryChickenList[i].get())) + "\t\t" + str( '%.2f'%(ChickPriceList[i]* int(EntryChickenList[i].get()) ) ) +'\n')
-                rg.write(ChickenList[i] +'\t\t\t'+  str(int(EntryChickenList[i].get())) + "\t\t" +  str( '%.2f'%(ChickPriceList[i]* int(EntryChickenList[i].get()) ) ) +'\n')
+            txtReceipt.delete("1.0",END)
+            x = random.randint(10908,500876)
+            randomRef = str(x)
+            ReceiptRef.set("BILL"+randomRef)
+            txtReceipt.insert(END,'หมายเลขใบเสร็จ :\t\t\t'+ ReceiptRef.get()  + '\t\t' + DateofOrder.get() + "\n")
+            txtReceipt.insert(END,'รายการ\t\t\t'+ 'จำนวน \t\t'+ " ราคา  \n\n")
 
-        txtReceipt.insert(END,'\nค่าบริการ : \t\t'+ ServiceCharge.get() +" ( "+ThaiBahtConversion(Service) + ' )\n')        
-        txtReceipt.insert(END,'ราคารวมสุทธิ : \t\t'+ TotalCost.get() +" ( "+ThaiBahtConversion(total) + ' )\n')
-        txtReceipt.insert(END,'รับเงิน : \t\t'+"('"+ ReceiveMoney.get() +"','บาท') ( "+ThaiBahtConversion(int(ReceiveMoney.get())) + ' )\n')
-        txtReceipt.insert(END,'เงินทอน : \t\t'+ ChangeMoney.get() +" ( "+ThaiBahtConversion(changeM) + ' )\n')
+            rg.write('หมายเลขใบเสร็จ:'+ReceiptRef.get()+ '\t\t' + DateofOrder.get() + "\n")
+            rg.write('รายการ\t\t\t\t'+ 'จำนวน \t\t'+ " ราคา  \n\n")
+            
+            for i in range(12) :
+                if int(EntryChickenList[i].get()) > 0 :
+                    
+                    txtReceipt.insert(END, ChickenList[i] +'\t\t\t'+ str(int(EntryChickenList[i].get())) + "\t\t" + str( '%.2f'%(ChickPriceList[i]* int(EntryChickenList[i].get()) ) ) +'\n')
+                    rg.write(ChickenList[i] +'\t\t\t'+  str(int(EntryChickenList[i].get())) + "\t\t" +  str( '%.2f'%(ChickPriceList[i]* int(EntryChickenList[i].get()) ) ) +'\n')
 
-        rg.write('\nค่าบริการ:\t\t'+"('"+ str(Service) +"' ,'บาท') ( "+ThaiBahtConversion(Service) + ' )\n')
-        rg.write('ราคารวมสุทธิ:\t'+"('"+str('%.2f'%(total)) +"' ,'บาท') ( "+ThaiBahtConversion(total) + ' )\n')
-        rg.write('รับเงิน : \t\t'+"('"+ ReceiveMoney.get() +"','บาท') ( "+ThaiBahtConversion(int(ReceiveMoney.get())) + ' )\n')
-        rg.write('เงินทอน : \t\t'+ ChangeMoney.get() + "( "+ThaiBahtConversion(changeM) + ' )\n')
-        rg.write("---------------------------------------------------------------\n\n")
-        rg.close()
+            txtReceipt.insert(END,'\nค่าบริการ : \t\t'+ str('%.2f'%Service)+ "\tบาท\t( "+ThaiBahtConversion(Service) + ' )\n')        
+            txtReceipt.insert(END,'ราคารวมสุทธิ : \t\t'+ str('%.2f'%total)+ "\tบาท\t( "+ThaiBahtConversion(total) + ' )\n')
+            txtReceipt.insert(END,'รับเงิน : \t\t'+ str('%.2f'%float(ReceiveMoney.get())) +"\tบาท\t( "+ThaiBahtConversion(float(ReceiveMoney.get())) + ' )\n')
+            txtReceipt.insert(END,'เงินทอน : \t\t'+ str('%.2f'%abs(round(changeM,2))) +"\tบาท\t( "+ThaiBahtConversion(changeM) + ' )\n')
+
+            rg.write('\nค่าบริการ : \t\t'+ str('%.2f'%Service)+ "\tบาท\t( "+ThaiBahtConversion(Service) + ' )\n')
+            rg.write('ราคารวมสุทธิ : \t\t'+ str('%.2f'%total)+ "\tบาท\t( "+ThaiBahtConversion(total) + ' )\n')
+            rg.write('รับเงิน : \t\t\t'+ str('%.2f'%float(ReceiveMoney.get())) +"\tบาท\t( "+ThaiBahtConversion(float(ReceiveMoney.get())) + ' )\n')
+            rg.write('เงินทอน : \t\t\t'+ str('%.2f'%abs(round(changeM,2))) +"\tบาท\t( "+ThaiBahtConversion(changeM) + ' )\n')
+            rg.write("---------------------------------------------------------------\n\n")
+            rg.close()
+        elif(round(changeM,1)<0):
+            txtReceipt.delete("1.0",END)
+            txtReceipt.insert(END,"***ยังจ่ายเงินไม่ครบ***")
 
 #====================== Variable Chicken =====================
 ReceiptRef = StringVar()
