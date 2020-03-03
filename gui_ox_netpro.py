@@ -3,17 +3,17 @@ from tkinter import *
 import socket
 ########## Draw Frame ############
 root =Tk()
-##root.geometry("1600x850+0+0")
+##root.geometry("1287x750+300+50")
 root.title("GAME OX")
-w=1600
-h=1000
+w=1400
+h=800
 ws = root.winfo_screenwidth()
 hs = root.winfo_screenheight()
-    # calculate position x, y
-x = (ws/2) - (w/2) + 250 
-y = (hs/2) - (h/2) + 100
+     # calculate position x, y
+x = (ws/2) - (w/2)    
+y = (hs/2) - (h/2)-50
 
-root.geometry('1600x1000+%d+%d' % (x, y))
+root.geometry('%dx%d+%d+%d' % (w,h,x, y))
 root.configure(background = '#2b5797')
 ##สีเหลือง #edb44e
 ##แดง #B22222
@@ -39,12 +39,13 @@ def text_change_online():
     lblTitle["text"] = 'Game OX (Online)'
     lblPlayerX["text"] = 'H or P  X'
     lblPlayerO["text"] = 'Player  O'
-    btnHost.grid(row=0,column=2,pady=10)
-    btnPvP.grid(row=2,column=2,pady=10)
+    btnHost.grid(row=0,column=0)
+    btnPvP.grid(row=0,column=1)
+    MainFrame.grid(row=3, column=0)
     
 def click_host():
     global host_ip
-    #lblTitle["text"] = 'Game OX (Online)'
+    lblTitle["text"] = 'Game OX (Online)'
     lblPlayerX["text"] = 'Host    X'
     lblPlayerO["text"] = 'Player  O'
     lblIPHost.grid(row=2,column=0)
@@ -54,13 +55,13 @@ def click_host():
     lblIP.grid_forget()
     entryPlayer.grid_forget()
     btnConnect.grid_forget()
-    btnHost.grid_forget()
-    btnPvP.grid_forget()
+    #btnHost.grid_forget()
+    # btnPvP.grid_forget()
 
 def click_player():
-    #lblTitle["text"] = 'Game OX (online)'
-    lblPlayerX["text"] = 'Host     X'
-    lblPlayerO["text"] = 'Player  O'
+    lblTitle["text"] = 'Game OX (Online)'
+    lblPlayerX["text"] = 'Host   X'
+    lblPlayerO["text"] = 'Player O'
     lblIP.grid(row=1,column=0)
     entryPlayer.grid(row=1,column=1)
     btnConnect.grid(row=1,column=2,padx=5)
@@ -68,71 +69,74 @@ def click_player():
     lblIPHost.grid_forget()
     entryHost.grid_forget()
     btnConnect1.grid_forget()
-    btnHost.grid_forget()
-    btnPvP.grid_forget()
+    #btnHost.grid_forget()
+    #btnPvP.grid_forget()
     
 TopTop = Frame(root, bg = '#2b5797', pady=2,width=1350, height=100, relief=RIDGE)
 TopTop.grid(row=0, column=0)
-lblTitle = Label(TopTop,font=('arial',50,'bold'), text="Game OX (Offline)", bd=21,bg="#2b5797",fg="Cornsilk",justify=CENTER)
+lblTitle = Label(TopTop,font=('arial',30,'bold'), text="Game OX (Offline)", bd=21,bg="#2b5797",fg="Cornsilk",justify=CENTER)
 lblTitle.grid(row=0,column=0)
 
 Tops = Frame(root, bg = '#2b5797', pady=2,width=1350, height=100, relief=RIDGE)
 Tops.grid(row=1, column=0)
-####offline#####
-btnHvP = Button(Tops,text="Offline", font=('Times 26 bold'), height = 1, width=10,bg="#edb44e",command=text_change_offline)
-btnHvP.grid(row=0,column=1,pady=10,padx=5)
-##online btn###
-btnPvP = Button(Tops,text="Online", font=('Times 26 bold'), height = 1, width=10,bg="#edb44e",command=text_change_online)
-btnPvP.grid(row=0,column=2,pady=10)
+# ####offline#####
+# btnHvP = Button(Tops,text="Offline", font=('Times 26 bold'), height = 1, width=10,bg="#edb44e",command=text_change_offline)
+# btnHvP.grid(row=1,column=0,pady=10,padx=5)
+# ##online btn###
+# btnPvP = Button(Tops,text="Online", font=('Times 26 bold'), height = 1, width=10,bg="#edb44e",command=text_change_online)
+# btnPvP.grid(row=1,column=1,pady=10)
 #### host or player ####
-btnHost = Button(Tops,text="Host", font=('Times 26 bold'), height = 1, width=10,bg="#edb44e",command=click_host)
-btnHost.grid(row=1,column=2,pady=10)
+btnHost = Button(Tops,text="Host", font=('Times 20 bold'), height = 1, width=10,bg="#edb44e",command=click_host)
+btnHost.grid(row=0,column=0)
 btnHost.grid_forget()
-btnPvP = Button(Tops,text="Player", font=('Times 26 bold'), height = 1, width=10,bg="#edb44e",command=click_player)
-btnPvP.grid(row=2,column=2,pady=10)
+btnPvP = Button(Tops,text="Player", font=('Times 20 bold'), height = 1, width=10,bg="#edb44e",command=click_player)
+btnPvP.grid(row=0,column=1)
 btnPvP.grid_forget()
 
 #### IP player#####  
 BottomFrame = Frame(root, pady=2,width=1350, height=100, relief=RIDGE,bg ='#2b5797')
 BottomFrame.grid(row=2, column=0)
-lblIP = Label(BottomFrame,font=('arial',30,'bold'), text="IP", bd=21,bg="#B22222",fg="Cornsilk",justify=CENTER)
+lblIP = Label(BottomFrame,font=('arial',15,'bold'), text="IP", bd=21,bg="#B22222",fg="Cornsilk",justify=CENTER)
 lblIP.grid(row=1,column=0)
 lblIP.grid_forget()
-entryPlayer = Entry(BottomFrame,font=('arial',30,'bold'),textvariable="", bd=21,bg="#B22222",fg="Cornsilk",justify=CENTER)
+entryPlayer = Entry(BottomFrame,font=('arial',15,'bold'),textvariable="", bd=21,bg="#B22222",fg="Cornsilk",justify=CENTER)
 entryPlayer.grid(row=1,column=1)
 entryPlayer.grid_forget()
-btnConnect = Button(BottomFrame,text="Player", font=('Times 26 bold'), height = 1, width=20,bg="#edb44e")
+btnConnect = Button(BottomFrame,text="Player", font=('Times 22 bold'), height = 1, width=20,bg="#edb44e")
 btnConnect.grid(row=1,column=2,padx=5)
 btnConnect.grid_forget()
 ######Show IP Host ######
-lblIPHost = Label(BottomFrame,font=('arial',30,'bold'), text="IP", bd=21,bg="#B22222",fg="Cornsilk",justify=CENTER)
+lblIPHost = Label(BottomFrame,font=('arial',15,'bold'), text="IP", bd=21,bg="#B22222",fg="Cornsilk",justify=CENTER)
 lblIPHost.grid(row=2,column=0)
 lblIPHost.grid_forget()
-entryHost = Label(BottomFrame,font=('arial',30,'bold'), text=str(host_ip),bd=21,bg="#B22222",fg="Cornsilk",justify=CENTER)
+entryHost = Label(BottomFrame,font=('arial',15,'bold'), text=str(host_ip),bd=21,bg="#B22222",fg="Cornsilk",justify=CENTER)
 entryHost.grid(row=2,column=1)
 entryHost.grid_forget()
-btnConnect1 = Label(BottomFrame,text="Host", font=('arial' ,48,' bold'), height = 1, width=10,bg="#edb44e")
-btnConnect1.grid(row=2,column=2)
+btnConnect1 = Button(BottomFrame,text="Host", font=('Times 22 bold'), height = 1, width=20,bg="#edb44e")
+btnConnect1.grid(row=2,column=2,padx=5)
 btnConnect1.grid_forget()
 
 ##### middle ####
-MainFrame = Frame(root, pady=2,width=1350, height=100, relief=RIDGE,bg ='#B22222')
-MainFrame.grid(row=3, column=0)
+MainFrame = Frame(root, pady=2,width=20, height=200, relief=RIDGE,bg ='#B22222')
+MainFrame.grid(row=2, column=0)
 
-LeftFrame = Frame(MainFrame , bd=10, width=750, height=500,padx=10,bg="#2b5797" , relief=RIDGE)
+LeftFrame = Frame(MainFrame , bd=10, width=200, height=200,padx=10,bg="#2b5797" , relief=RIDGE)
 LeftFrame.pack(side=LEFT)
 
-RightFrame = Frame(MainFrame , bd=10, width=560, height=500,padx=10,pady=2,bg="#2b5797" , relief=RIDGE)
+RightFrame = Frame(MainFrame , bd=10, width=200, height=200,padx=10,pady=2,bg="#2b5797" , relief=RIDGE)
 RightFrame.pack(side=RIGHT)
 
-RightFrame1 = Frame(RightFrame , bd=10, width=560, height=200,padx=10,pady=2,bg="#edb44e" , relief=RIDGE)
+RightFrame1 = Frame(RightFrame , bd=10, width=200, height=200,padx=10,pady=2,bg="#edb44e" , relief=RIDGE)
 RightFrame1.grid(row=0,column=0)
 
-RightFrame2 = Frame(RightFrame , bd=10, width=560, height=200,padx=10,pady=2,bg="#2b5797" , relief=RIDGE)
+RightFrame2 = Frame(RightFrame , bd=10, width=200, height=200,padx=10,pady=2,bg="#2b5797" , relief=RIDGE)
 RightFrame2.grid(row=1,column=0)
 
-RightFrame3 = Frame(RightFrame , bd=10, width=560, height=200,padx=10,pady=2,bg="#2b5797" , relief=RIDGE)
-RightFrame3.grid(row=3,column=0)
+RightFrame3 = Frame(RightFrame , bd=10, width=200, height=200,padx=10,pady=2,bg="#2b5797" , relief=RIDGE)
+RightFrame3.grid(row=2,column=0)
+
+RightFrame4 = Frame(RightFrame , bd=10, width=200, height=200,padx=10,pady=2,bg="#2b5797" , relief=RIDGE)
+RightFrame4.grid(row=3,column=0)
 
 
 ##### set player #####
@@ -142,15 +146,15 @@ PlayerO=IntVar()
 PlayerX.set(0)
 PlayerO.set(0)
     
-lblPlayerX = Label(RightFrame1,font=('arial',40,'bold'), text="Player1  X", padx=2,pady=2,bg="#edb44e")
+lblPlayerX = Label(RightFrame1,font=('arial',20,'bold'), text="Player1  X", padx=2,pady=2,bg="#edb44e")
 lblPlayerX.grid(row=0,column=0,sticky=W)
-txtPlayerX=Label(RightFrame1,font=('arial',40,'bold'), bd=2,fg="black",textvariable= PlayerX, width=14,
+txtPlayerX=Label(RightFrame1,font=('arial',20,'bold'), bd=2,fg="black",textvariable= PlayerX, width=14,
                  justify=CENTER).grid(row=0,column=1)
 
 
-lblPlayerO = Label(RightFrame1,font=('arial',40,'bold'), text="Player2  O", padx=2,pady=2,bg="#edb44e")
+lblPlayerO = Label(RightFrame1,font=('arial',20,'bold'), text="Player2  O", padx=2,pady=2,bg="#edb44e")
 lblPlayerO.grid(row=1,column=0,sticky=W)
-txtPlayerO=Label(RightFrame1,font=('arial',40,'bold'), bd=2,fg="black",textvariable= PlayerO, width=14,
+txtPlayerO=Label(RightFrame1,font=('arial',20,'bold'), bd=2,fg="black",textvariable= PlayerO, width=14,
                  justify=CENTER).grid(row=1,column=1)
 
 
@@ -173,6 +177,7 @@ def checker(buttons):
 def scorekeeper():
     global draw
     draw +=1
+    print("Draw point: ",draw)
     if(button1["text"]=="X" and button2["text"]=="X" and button3["text"]=="X"):
         button1.configure(background="powder blue")
         button2.configure(background="powder blue")
@@ -182,7 +187,6 @@ def scorekeeper():
         PlayerX.set(score)
         tkinter.messagebox.showinfo("Winner X", "You Won")
         draw = 0
-        
     
     if(button4["text"]=="X" and button5["text"]=="X" and button6["text"]=="X"):
         button4.configure(background="Red")
@@ -345,6 +349,8 @@ def scorekeeper():
     
         
 def reset():
+    global draw
+    draw = 0
     button1['text']=" "
     button2['text']=" "
     button3['text']=" "
@@ -365,17 +371,26 @@ def reset():
     button8.configure(background="#edb44e")
     button9.configure(background="#edb44e")
     
-def NewGame():
+def NewGame_Online():
     reset()
     PlayerX.set(0)
     PlayerO.set(0)
+    text_change_online()
 
-btnNewGame = Button(RightFrame2, text="New Game", font=('Times 26 bold'), height = 1, width=20,bg="#B22222" ,command=reset,fg="white")
-btnNewGame.grid(row=0,column=0)
+def NewGame_Offline():
+    reset()
+    PlayerX.set(0)
+    PlayerO.set(0)
+    text_change_offline()
 
-btnReset = Button(RightFrame2, text="Reset", font=('Times 26 bold'), height = 1, width=20,bg="#B22222",fg="white", command=NewGame)
-btnReset.grid(row=1,column=0)
+### neew game btn ####
+btnNewGameOff = Button(RightFrame2, text="New Game in Offline Mode", font=('Times 15 bold'), height = 1, width=20,bg="#B22222",fg="white", command=NewGame_Offline)
+btnNewGameOff.grid(row=0,column=0)
+btnNewGameOn = Button(RightFrame2, text="New Game in Online Mode", font=('Times 15 bold'), height = 1, width=20,bg="#B22222",fg="white", command=NewGame_Online)
+btnNewGameOn.grid(row=0,column=1,padx=0.2)
 
+btnReset = Button(RightFrame3, text="Reset", font=('Times 15 bold'), height = 1, width=20,bg="#B22222" ,command=reset,fg="white")
+btnReset.grid(row=0,column=0)
 ############# Draw 3x3 button ######
 button1 = Button(LeftFrame, text=" ", font=('Times 26 bold'), height = 3, width=8,bg='#edb44e', command=lambda:checker(button1))
 button1.grid(row=1,column=0, stick = S+N+E+W)
@@ -409,7 +424,7 @@ button9.grid(row=3,column=2, stick = S+N+E+W)
 def openhof():
     #window = Toplevel(root)
     window =Tk()
-    window.geometry("1000x400+400+300")
+    window.geometry("900x400+500+300")
     window.title("Hall of Fame")
     window.configure(background = '#2b5797')
     Topfr = Frame(window, bg = '#2b5797',width=100, height=50)
@@ -436,18 +451,17 @@ def openhof():
     #=======IP left=============
     lblIP = Label(MHFrameLeft,font=('arial',20,'bold'), text="IP",bg="White",width=15,borderwidth=2, relief="solid")
     lblIP.grid(row=0,column=0)
-    txtIP1 = Label(MHFrameLeft,font=('arial',20,'bold'), text="198.160.45.525",bd=2,fg="black",width=15, relief="solid")
-    txtIP1.grid(row=1,column=0)
-    txtIP2 = Label(MHFrameLeft,font=('arial',20,'bold'), text="198.160.45.535",bd=2,fg="black",width=15, relief="solid")
-    txtIP2.grid(row=2,column=0)
+    txtIP = Label(MHFrameLeft,font=('arial',20,'bold'), text="198.160.45.525",bd=2,fg="black",width=15, relief="solid")
+    txtIP.grid(row=1,column=0)
+    txtIP1 = Label(MHFrameLeft,font=('arial',20,'bold'), text="198.160.45.535",bd=2,fg="black",width=15, relief="solid")
+    txtIP1.grid(row=2,column=0)
     #========score right==============
     lblScore = Label(MHFrameRight,font=('arial',20,'bold'), text="Score",bg="White",width=15,borderwidth=2, relief="solid")
     lblScore.grid(row=0,column=1)
-    txtScore1 = Label(MHFrameRight,font=('arial',20,'bold'), text="5",bd=2,fg="black",width=15, relief="solid")
-    txtScore1.grid(row=1,column=1)
-    txtScore2 = Label(MHFrameRight,font=('arial',20,'bold'), text="2",bd=2,fg="black",width=15, relief="solid")
-    txtScore2.grid(row=2,column=1)
-    
+    txtScore = Label(MHFrameRight,font=('arial',20,'bold'), text="5",bd=2,fg="black",width=15, relief="solid")
+    txtScore.grid(row=1,column=1)
+    txtScore1 = Label(MHFrameRight,font=('arial',20,'bold'), text="2",bd=2,fg="black",width=15, relief="solid")
+    txtScore1.grid(row=2,column=1)
     #=========== จำนวนที่เล่น ===============
     lblplaycount = Label(MHFrameRight,font=('arial',20,'bold'), text="play count",bg="White",width=15,borderwidth=2, relief="solid")
     lblplaycount.grid(row=0,column=2)
@@ -468,67 +482,9 @@ def openhof():
     
     #window.resizable(width=False, height=False)
 
-btnHall = Button(RightFrame3, text="Hall of Fame", font=('Times 26 bold'), height = 1, width=20,bg="#edb44e", command=openhof)
+btnHall = Button(RightFrame4, text="Hall of Fame", font=('Times 26 bold'), height = 1, width=20,bg="#edb44e", command=openhof)
 btnHall.pack()
-##====HOW to play==========
-def openhtp():
-    
-    window =Tk()
-    window.geometry("1550x650+160+200")
-    window.title("How to play")
-    window.configure(background = '#2b5797')
-    Topfr = Frame(window, bg = '#2b5797',width=100, height=50)
-    Topfr.pack(side=TOP)
-    MainFrame = Frame(window, bg = '#B22222',width=200, height=500)
-    MainFrame.pack(side=TOP)
-    
-    #### Top Frame #####
-    TopHFrame = Frame(MainFrame, bg = 'black',width=200, height=500)
-    TopHFrame.pack(side=TOP)
-    lblTitle = Label(TopHFrame,font=('arial',50,'bold'), text="How to play ", bd=15,bg="#B22222",fg="Cornsilk",justify=CENTER)
-    lblTitle.grid(row=0,column=0)
-    #### Middle #####
-    MiddleHFrame = Frame(MainFrame, bg = '#B22222',width=200, height=500)
-    MiddleHFrame.pack(side=TOP)
-    
-    MHFrame = Frame(MiddleHFrame, bg = 'white',width=200, height=500)
-    MHFrame.pack(side=TOP)
-    MHFrameLeftmuch = Frame(MHFrame, bg = 'white',width=10, height=200)
-    MHFrameLeftmuch.pack(side=LEFT)
-    MHFrameLeft = Frame(MHFrame, bg = 'black',width=200, height=500)
-    MHFrameLeft.pack(side=LEFT)
-    MHFrameRightmuch = Frame(MHFrame, bg = 'white',width=10, height=200)
-    MHFrameRightmuch.pack(side=LEFT)
-    
-    #=======IP left=============
-    
-    txt1 = Label(MHFrameLeft,font=('arial',20,'bold') ,text='1.เมื่อเข้าเกมจะเริ่มเป็นระบบ offline ผุ้เล่นที่เริ่มกดก่อนจะเป็น X', anchor='w',bg='white').pack(fill='both')
-    txt2 = Label(MHFrameLeft,font=('arial',20,'bold') ,text='2.กดปุ่ม online เพื่อเปลี่ยนโหมดการเล่น และสามารถ เลือกได้ว่า จะเป็น HOST หรือ player', anchor='w',bg='white').pack(fill='both')
-    txt3 = Label(MHFrameLeft,font=('arial',20,'bold'), text='   เมื่อผู้เล่นกดปุ่ม Host จะมีการแสดง IP ของเครื่องเรา และรอผู้เล่นเข้ามาเชื่อมต่อ', anchor='w',bg='white').pack(fill='both')
-    txt4 = Label(MHFrameLeft,font=('arial',20,'bold'), text='   เมื่อผู้เล่นกดปุ่ม player ผู้เล่นจะต้องนำ IP ของ host ที่ต้องการเชื่อมต่อ กรอก แล้วกดปุ่ม player ที่อยู่ด้านข้าง', anchor='w',bg='white').pack(fill='both')
-    txt5 = Label(MHFrameLeft,font=('arial',20,'bold'), text='3.ปุ่ม  NewGame จะเป็นการ เริ่มตารางใหม่', anchor='w',bg='white').pack(fill='both')
-    txt6 = Label(MHFrameLeft,font=('arial',20,'bold'), text='4.ปุ่ม  Reset จะเป็นการเริ่มตารางใหม่และ คะแนนการเล่น', anchor='w',bg='white').pack(fill='both')
-    txt7 = Label(MHFrameLeft,font=('arial',20,'bold'), text='5.ปุ่ม  Half of fame จะเป็นการบอกจำนวนกาแข่งขัน และ จำนวนการชนะของแต่ละผู้เล่น', anchor='w',bg='white').pack(fill='both')
-    txt8 = Label(MHFrameLeft,font=('arial',20,'bold'), text='6.การแข่งขันชนะ เมื่อมีผู้เล่นทำสัญลักษณ์ของตนเอง ครบ 3 ช่อง ในแนวนอน,ตั้ง,เฉียง', anchor='w',bg='white').pack(fill='both')
 
-    
-    #========score right==============
-  
-    
-    #=========== จำนวนที่เล่น ===============
-   
-    
 
-    
-    #########Button go Back #####
-    BottomHFrame = Frame(MainFrame, bg = 'lime green',width=700, height=100)
-    BottomHFrame.pack(side=TOP)
-    def close_window ():
-        window.destroy()
-    btnPG = Button(BottomHFrame, text="Exit", font=('Times 15 bold'), height = 1, width=15,bg="#edb44e",command=close_window)
-    btnPG.grid(row=2,column=0)
-    
-btnhowto = Button(Tops, text="How to play", font=('Times 26 bold'), height = 1, width=20,bg="#edb44e", command=openhtp)
-btnhowto.grid(row=0,column=0,pady=10,padx=5)
 
 root.mainloop()
