@@ -74,7 +74,7 @@ def click_player():
     
 TopTop = Frame(root, bg = '#2b5797', pady=2,width=1350, height=100, relief=RIDGE)
 TopTop.grid(row=0, column=0)
-lblTitle = Label(TopTop,font=('arial',30,'bold'), text="Game OX (Offline)", bd=21,bg="#2b5797",fg="Cornsilk",justify=CENTER)
+lblTitle = Label(TopTop,font=('arial',30,'bold'), text="Game OX", bd=21,bg="#2b5797",fg="Cornsilk",justify=CENTER)
 lblTitle.grid(row=0,column=0)
 
 Tops = Frame(root, bg = '#2b5797', pady=2,width=1350, height=100, relief=RIDGE)
