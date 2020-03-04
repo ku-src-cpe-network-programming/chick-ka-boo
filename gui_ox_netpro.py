@@ -5,8 +5,8 @@ import socket
 root =Tk()
 ##root.geometry("1287x750+300+50")
 root.title("GAME OX")
-w=1400
-h=800
+w=1287
+h=740
 ws = root.winfo_screenwidth()
 hs = root.winfo_screenheight()
      # calculate position x, y
@@ -86,30 +86,30 @@ Tops.grid(row=1, column=0)
 # btnPvP = Button(Tops,text="Online", font=('Times 26 bold'), height = 1, width=10,bg="#edb44e",command=text_change_online)
 # btnPvP.grid(row=1,column=1,pady=10)
 #### host or player ####
-btnHost = Button(Tops,text="Host", font=('Times 20 bold'), height = 1, width=10,bg="#edb44e",command=click_host)
+btnHost = Button(Tops,text="Host", font=('Times 15 bold'), height = 1, width=10,bg="#edb44e",command=click_host)
 btnHost.grid(row=0,column=0)
 btnHost.grid_forget()
-btnPvP = Button(Tops,text="Player", font=('Times 20 bold'), height = 1, width=10,bg="#edb44e",command=click_player)
+btnPvP = Button(Tops,text="Player", font=('Times 15 bold'), height = 1, width=10,bg="#edb44e",command=click_player)
 btnPvP.grid(row=0,column=1)
 btnPvP.grid_forget()
 
 #### IP player#####  
 BottomFrame = Frame(root, pady=2,width=1350, height=100, relief=RIDGE,bg ='#2b5797')
 BottomFrame.grid(row=2, column=0)
-lblIP = Label(BottomFrame,font=('arial',15,'bold'), text="IP", bd=21,bg="#B22222",fg="Cornsilk",justify=CENTER)
+lblIP = Label(BottomFrame,font=('arial',12,'bold'), text="IP", bd=21,bg="#B22222",fg="Cornsilk",justify=CENTER)
 lblIP.grid(row=1,column=0)
 lblIP.grid_forget()
-entryPlayer = Entry(BottomFrame,font=('arial',15,'bold'),textvariable="", bd=21,bg="#B22222",fg="Cornsilk",justify=CENTER)
+entryPlayer = Entry(BottomFrame,font=('arial',12,'bold'),textvariable="", bd=21,bg="#B22222",fg="Cornsilk",justify=CENTER)
 entryPlayer.grid(row=1,column=1)
 entryPlayer.grid_forget()
 btnConnect = Button(BottomFrame,text="Player", font=('Times 22 bold'), height = 1, width=20,bg="#edb44e")
 btnConnect.grid(row=1,column=2,padx=5)
 btnConnect.grid_forget()
 ######Show IP Host ######
-lblIPHost = Label(BottomFrame,font=('arial',15,'bold'), text="IP", bd=21,bg="#B22222",fg="Cornsilk",justify=CENTER)
+lblIPHost = Label(BottomFrame,font=('arial',12,'bold'), text="IP", bd=21,bg="#B22222",fg="Cornsilk",justify=CENTER)
 lblIPHost.grid(row=2,column=0)
 lblIPHost.grid_forget()
-entryHost = Label(BottomFrame,font=('arial',15,'bold'), text=str(host_ip),bd=21,bg="#B22222",fg="Cornsilk",justify=CENTER)
+entryHost = Label(BottomFrame,font=('arial',12,'bold'), text=str(host_ip),bd=21,bg="#B22222",fg="Cornsilk",justify=CENTER)
 entryHost.grid(row=2,column=1)
 entryHost.grid_forget()
 btnConnect1 = Button(BottomFrame,text="Host", font=('Times 22 bold'), height = 1, width=20,bg="#edb44e")
@@ -120,23 +120,24 @@ btnConnect1.grid_forget()
 MainFrame = Frame(root, pady=2,width=20, height=200, relief=RIDGE,bg ='#B22222')
 MainFrame.grid(row=2, column=0)
 
-LeftFrame = Frame(MainFrame , bd=10, width=200, height=200,padx=10,bg="#2b5797" , relief=RIDGE)
-LeftFrame.pack(side=LEFT)
+LeftFrame = Frame(MainFrame , bd=10, width=200, height=200,pady=5,padx=10,bg="#2b5797" , relief=RIDGE)
+LeftFrame.pack(side=LEFT,expand = True, fill = BOTH)
 
-RightFrame = Frame(MainFrame , bd=10, width=200, height=200,padx=10,pady=2,bg="#2b5797" , relief=RIDGE)
-RightFrame.pack(side=RIGHT)
+RightFrame = Frame(MainFrame , bd=10, width=200, height=300,padx=10,pady=20,bg="#2b5797" , relief=RIDGE)
+RightFrame.pack(side=RIGHT,expand = True, fill = BOTH)
 
 RightFrame1 = Frame(RightFrame , bd=10, width=200, height=200,padx=10,pady=2,bg="#edb44e" , relief=RIDGE)
 RightFrame1.grid(row=0,column=0)
+RightFrame1.grid_columnconfigure(0, weight=1)
 
 RightFrame2 = Frame(RightFrame , bd=10, width=200, height=200,padx=10,pady=2,bg="#2b5797" , relief=RIDGE)
-RightFrame2.grid(row=1,column=0)
+RightFrame2.grid(row=1,column=0,pady=10)
 
 RightFrame3 = Frame(RightFrame , bd=10, width=200, height=200,padx=10,pady=2,bg="#2b5797" , relief=RIDGE)
-RightFrame3.grid(row=2,column=0)
+RightFrame3.grid(row=2,column=0,pady=10)
 
 RightFrame4 = Frame(RightFrame , bd=10, width=200, height=200,padx=10,pady=2,bg="#2b5797" , relief=RIDGE)
-RightFrame4.grid(row=3,column=0)
+RightFrame4.grid(row=3,column=0,pady=20)
 
 
 ##### set player #####
@@ -146,15 +147,15 @@ PlayerO=IntVar()
 PlayerX.set(0)
 PlayerO.set(0)
     
-lblPlayerX = Label(RightFrame1,font=('arial',20,'bold'), text="Player1  X", padx=2,pady=2,bg="#edb44e")
+lblPlayerX = Label(RightFrame1,font=('arial',26,'bold'), text="Player1  X", padx=2,pady=2,bg="#edb44e")
 lblPlayerX.grid(row=0,column=0,sticky=W)
-txtPlayerX=Label(RightFrame1,font=('arial',20,'bold'), bd=2,fg="black",textvariable= PlayerX, width=14,
+txtPlayerX=Label(RightFrame1,font=('arial',26,'bold'), bd=2,fg="black",textvariable= PlayerX, width=14,
                  justify=CENTER).grid(row=0,column=1)
 
 
-lblPlayerO = Label(RightFrame1,font=('arial',20,'bold'), text="Player2  O", padx=2,pady=2,bg="#edb44e")
+lblPlayerO = Label(RightFrame1,font=('arial',26,'bold'), text="Player2  O", padx=2,pady=2,bg="#edb44e")
 lblPlayerO.grid(row=1,column=0,sticky=W)
-txtPlayerO=Label(RightFrame1,font=('arial',20,'bold'), bd=2,fg="black",textvariable= PlayerO, width=14,
+txtPlayerO=Label(RightFrame1,font=('arial',26,'bold'), bd=2,fg="black",textvariable= PlayerO, width=14,
                  justify=CENTER).grid(row=1,column=1)
 
 
@@ -370,53 +371,67 @@ def reset():
     button7.configure(background="#edb44e")
     button8.configure(background="#edb44e")
     button9.configure(background="#edb44e")
+
+def enable_button():
+    button1['state'] = 'normal'
+    button2['state'] = 'normal'
+    button3['state'] = 'normal'
+    button4['state'] = 'normal'
+    button5['state'] = 'normal'
+    button6['state'] = 'normal'
+    button7['state'] = 'normal'
+    button8['state'] = 'normal'
+    button9['state'] = 'normal'
+    
     
 def NewGame_Online():
     reset()
     PlayerX.set(0)
     PlayerO.set(0)
     text_change_online()
+    enable_button()
 
 def NewGame_Offline():
     reset()
     PlayerX.set(0)
     PlayerO.set(0)
     text_change_offline()
+    enable_button()
 
 ### neew game btn ####
 btnNewGameOff = Button(RightFrame2, text="New Game in Offline Mode", font=('Times 15 bold'), height = 1, width=20,bg="#B22222",fg="white", command=NewGame_Offline)
 btnNewGameOff.grid(row=0,column=0)
-btnNewGameOn = Button(RightFrame2, text="New Game in Online Mode", font=('Times 15 bold'), height = 1, width=20,bg="#B22222",fg="white", command=NewGame_Online)
-btnNewGameOn.grid(row=0,column=1,padx=0.2)
+btnNewGameOn = Button(RightFrame2, text="New Game in Online Mode", font=('Times 15 bold'), height = 1, width=20,bg="DeepPink1",fg="white", command=NewGame_Online)
+btnNewGameOn.grid(row=1,column=0,pady=5)
 
-btnReset = Button(RightFrame3, text="Reset", font=('Times 15 bold'), height = 1, width=20,bg="#B22222" ,command=reset,fg="white")
+btnReset = Button(RightFrame3, text="Reset", font=('Times 15 bold'), height = 1, width=20,bg="SpringGreen4" ,command=reset,fg="white")
 btnReset.grid(row=0,column=0)
 ############# Draw 3x3 button ######
-button1 = Button(LeftFrame, text=" ", font=('Times 26 bold'), height = 3, width=8,bg='#edb44e', command=lambda:checker(button1))
+button1 = Button(LeftFrame, text=" ", font=('Times 26 bold'),state=DISABLED, height = 3, width=8,bg='#edb44e', command=lambda:checker(button1))
 button1.grid(row=1,column=0, stick = S+N+E+W)
 
-button2 = Button(LeftFrame, text=" ", font=('Times 26 bold'), height = 3, width=8,bg='#edb44e', command=lambda:checker(button2))
+button2 = Button(LeftFrame, text=" ", font=('Times 26 bold'),state=DISABLED, height = 3, width=8,bg='#edb44e', command=lambda:checker(button2))
 button2.grid(row=1,column=1, stick = S+N+E+W)
 
-button3 = Button(LeftFrame, text=" ", font=('Times 26 bold'), height = 3, width=8,bg='#edb44e', command=lambda:checker(button3))
+button3 = Button(LeftFrame, text=" ", font=('Times 26 bold'),state=DISABLED, height = 3, width=8,bg='#edb44e', command=lambda:checker(button3))
 button3.grid(row=1,column=2, stick = S+N+E+W)
 
-button4 = Button(LeftFrame, text=" ", font=('Times 26 bold'), height = 3, width=8,bg='#edb44e', command=lambda:checker(button4))
+button4 = Button(LeftFrame, text=" ", font=('Times 26 bold'),state=DISABLED, height = 3, width=8,bg='#edb44e', command=lambda:checker(button4))
 button4.grid(row=2,column=0, stick = S+N+E+W)
 
-button5 = Button(LeftFrame, text=" ", font=('Times 26 bold'), height = 3, width=8,bg='#edb44e', command=lambda:checker(button5))
+button5 = Button(LeftFrame, text=" ", font=('Times 26 bold'),state=DISABLED, height = 3, width=8,bg='#edb44e', command=lambda:checker(button5))
 button5.grid(row=2,column=1, stick = S+N+E+W)
 
-button6 = Button(LeftFrame, text=" ", font=('Times 26 bold'), height = 3, width=8,bg='#edb44e', command=lambda:checker(button6))
+button6 = Button(LeftFrame, text=" ", font=('Times 26 bold'),state=DISABLED, height = 3, width=8,bg='#edb44e', command=lambda:checker(button6))
 button6.grid(row=2,column=2, stick = S+N+E+W)
 
-button7 = Button(LeftFrame, text=" ", font=('Times 26 bold'), height = 3, width=8,bg='#edb44e', command=lambda:checker(button7))
+button7 = Button(LeftFrame, text=" ", font=('Times 26 bold'),state=DISABLED, height = 3, width=8,bg='#edb44e', command=lambda:checker(button7))
 button7.grid(row=3,column=0, stick = S+N+E+W)
 
-button8 = Button(LeftFrame, text=" ", font=('Times 26 bold'), height = 3, width=8,bg='#edb44e', command=lambda:checker(button8))
+button8 = Button(LeftFrame, text=" ", font=('Times 26 bold'),state=DISABLED, height = 3, width=8,bg='#edb44e', command=lambda:checker(button8))
 button8.grid(row=3,column=1, stick = S+N+E+W)
 
-button9 = Button(LeftFrame, text=" ", font=('Times 26 bold'), height = 3, width=8,bg='#edb44e', command=lambda:checker(button9))
+button9 = Button(LeftFrame, text=" ", font=('Times 26 bold'),state=DISABLED, height = 3, width=8,bg='#edb44e', command=lambda:checker(button9))
 button9.grid(row=3,column=2, stick = S+N+E+W)
 
 
@@ -482,7 +497,7 @@ def openhof():
     
     #window.resizable(width=False, height=False)
 
-btnHall = Button(RightFrame4, text="Hall of Fame", font=('Times 26 bold'), height = 1, width=20,bg="#edb44e", command=openhof)
+btnHall = Button(RightFrame4, text="Hall of Fame", font=('Times 15 bold'), height = 1, width=20,bg="#edb44e", command=openhof)
 btnHall.pack()
 
 
