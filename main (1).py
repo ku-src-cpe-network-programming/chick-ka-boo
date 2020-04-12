@@ -433,7 +433,7 @@ def Receipt():
             NumOrder+=1
             rg.write('หมายเลขใบเสร็จ:'+ReceiptRef.get()+ '\t\t' + DateofOrder.get() + "\n")
             rg.write('รายการ\t'+ str('%d'%(NumOrder))+'\t\t'+ 'จำนวน \t'+ str('%.2f'%total)+'\t'+ " ราคา  \n\n")
-            for i in range(12) :
+            for i in range(10) :
                 if int(EntryChickenList[i].get()) > 0 :
                     sum_chick[i]+=int(EntryChickenList[i].get())
                     txtReceipt.insert(END, ChickenList[i] +'\t\t'+'('+str(ChickPriceList[i])+')'+'\t'+ str(int(EntryChickenList[i].get())) + "\t\t" + str( '%.2f'%(ChickPriceList[i]* int(EntryChickenList[i].get()) ) ) +'\n')
@@ -468,9 +468,9 @@ ReceiptRef = StringVar()
 DateofOrder = StringVar()
 DateofOrder.set(time.strftime("%d/%m/%Y"))
 
-ChickenList = ["ไก่ทอดสไปซี่","ไก่ทอดต้มยำ","ไก่นุ่ม","ข้าวยำไก่แซ่บ",
-            "ไก่ทอดชุดครอบครัว","ชุดไก่สารพัด","ไก่ทอดเกาหลี","ชุดไก่ปิคนิก",
-            "ชุดไก่ปิกนิก","เคบับไก่","เบอร์เกอร์ไก่","Ice-Cream Chicken"]
+ChickenList = ["ไก่ทอดสไปซี่ 50 บาท","ไก่ทอดต้มยำ 50 บาท","ไก่นุ่ม 50 บาท","ข้าวยำไก่แซ่บ 50 บาท",
+            "ไก่ทอดชุดครอบครัว 200 บาท","ชุดไก่สารพัด 150 บาท","ไก่ทอดเกาหลี 100 บาท","ชุดไก่ปิคนิก 80 บาท",
+            "เคบับไก่ 80 บาท","เบอร์เกอร์ไก่ 70 บาท"]
 
 VarChicken0 = IntVar()
 VarChicken1 = IntVar()
@@ -607,39 +607,39 @@ Chicken6 = Checkbutton(fChicken11, text=ChickenList[6],variable = VarChickenList
 #Chicken7 = Checkbutton(fChicken1 , text=ChickenList[7],variable = VarChickenList[7],onvalue = 1, offvalue=0,
                     #font=('TH Sarabun New',14,'bold'),command=lambda:chkbutton_value(VarChickenList[7],txtChicken7,EntryChickenList[7])).grid(row= 7, sticky=W)
 
-Chicken8 = Checkbutton(fChicken22, text=ChickenList[8],variable = VarChickenList[8],onvalue = 1, offvalue=0,
+Chicken8 = Checkbutton(fChicken22, text=ChickenList[7],variable = VarChickenList[8],onvalue = 1, offvalue=0,
                     font=('TH Sarabun New',14,'bold'),command=lambda:chkbutton_value(VarChickenList[8],txtChicken8,EntryChickenList[8])).grid(row= 1,column=0, sticky=W)
-Chicken9 = Checkbutton(fChicken22 , text=ChickenList[9],variable = VarChickenList[9],onvalue = 1, offvalue=0,
+Chicken9 = Checkbutton(fChicken22 , text=ChickenList[8],variable = VarChickenList[9],onvalue = 1, offvalue=0,
                     font=('TH Sarabun New',14,'bold'),command=lambda:chkbutton_value(VarChickenList[9],txtChicken9,EntryChickenList[9])).grid(row= 1,column=2, sticky=W)
-Chicken10 = Checkbutton(fChicken22 , text=ChickenList[10],variable = VarChickenList[10],onvalue = 1, offvalue=0,
+Chicken10 = Checkbutton(fChicken22 , text=ChickenList[9],variable = VarChickenList[10],onvalue = 1, offvalue=0,
                     font=('TH Sarabun New',14,'bold'),command=lambda:chkbutton_value(VarChickenList[10],txtChicken10,EntryChickenList[10])).grid(row= 1,column=4, sticky=W)
 #Chicken11 = Checkbutton(fChicken2 , text=ChickenList[11],variable = VarChickenList[11],onvalue = 1, offvalue=0,
                     #font=('TH Sarabun New',12,'bold'),command=lambda:chkbutton_value(VarChickenList[11],txtChicken11,EntryChickenList[11])).grid(row= 11, sticky=W)
 
 #=======================Enter Widgets for Chicken =======================
-txtChicken0 = Entry(fChicken00 ,font=('TH Sarabun New',12,'bold'),bd=5,width=13,justify='right',textvariable=EntryChickenList[0],state = DISABLED)
+txtChicken0 = Entry(fChicken00 ,font=('TH Sarabun New',12,'bold'),bd=5,width=3,justify='right',textvariable=EntryChickenList[0],state = DISABLED)
 txtChicken0.grid(row=0,column =2)
-txtChicken1 = Entry(fChicken00 ,font=('TH Sarabun New',12,'bold'),bd=5,width=16,justify='right',textvariable=EntryChickenList[1],state = DISABLED)
+txtChicken1 = Entry(fChicken00 ,font=('TH Sarabun New',12,'bold'),bd=5,width=6,justify='right',textvariable=EntryChickenList[1],state = DISABLED)
 txtChicken1.grid(row=0,column =4)
-txtChicken2 = Entry(fChicken00 ,font=('TH Sarabun New',12,'bold'),bd=5,width=22,justify='right',textvariable=EntryChickenList[2],state = DISABLED)
+txtChicken2 = Entry(fChicken00 ,font=('TH Sarabun New',12,'bold'),bd=5,width=3,justify='right',textvariable=EntryChickenList[2],state = DISABLED)
 txtChicken2.grid(row=0,column =6)
-txtChicken3 = Entry(fChicken00 ,font=('TH Sarabun New',12,'bold'),bd=5,width=13,justify='right',textvariable=EntryChickenList[3],state = DISABLED)
+txtChicken3 = Entry(fChicken00 ,font=('TH Sarabun New',12,'bold'),bd=5,width=3,justify='right',textvariable=EntryChickenList[3],state = DISABLED)
 txtChicken3.grid(row=0,column =8)
 
-txtChicken4 = Entry(fChicken11 ,font=('TH Sarabun New',12,'bold'),bd=5,width=19,justify='right',textvariable=EntryChickenList[4],state = DISABLED)
+txtChicken4 = Entry(fChicken11 ,font=('TH Sarabun New',12,'bold'),bd=5,width=9,justify='right',textvariable=EntryChickenList[4],state = DISABLED)
 txtChicken4.grid(row=1,column =1)
-txtChicken5 = Entry(fChicken11 ,font=('TH Sarabun New',12,'bold'),bd=5,width=26,justify='right',textvariable=EntryChickenList[5],state = DISABLED)
+txtChicken5 = Entry(fChicken11 ,font=('TH Sarabun New',12,'bold'),bd=5,width=6,justify='right',textvariable=EntryChickenList[5],state = DISABLED)
 txtChicken5.grid(row=1,column =3)
-txtChicken6 = Entry(fChicken11 ,font=('TH Sarabun New',12,'bold'),bd=5,width=25,justify='right',textvariable=EntryChickenList[6],state = DISABLED)
+txtChicken6 = Entry(fChicken11 ,font=('TH Sarabun New',12,'bold'),bd=5,width=5,justify='right',textvariable=EntryChickenList[6],state = DISABLED)
 txtChicken6.grid(row=1,column =5)
 #txtChicken7 = Entry(fChicken1 ,font=('TH Sarabun New',12,'bold'),bd=5,width=6,justify='left',textvariable=EntryChickenList[7],state = DISABLED)
 #txtChicken7.grid(row=7,column =1)
 
-txtChicken8 = Entry(fChicken22 ,font=('TH Sarabun New',12,'bold'),bd=5,width=27,justify='right',textvariable=EntryChickenList[7],state = DISABLED)
+txtChicken8 = Entry(fChicken22 ,font=('TH Sarabun New',12,'bold'),bd=5,width=7,justify='right',textvariable=EntryChickenList[7],state = DISABLED)
 txtChicken8.grid(row=1,column =1)
-txtChicken9 = Entry(fChicken22 ,font=('TH Sarabun New',12,'bold'),bd=5,width=31,justify='right',textvariable=EntryChickenList[8],state = DISABLED)
+txtChicken9 = Entry(fChicken22 ,font=('TH Sarabun New',12,'bold'),bd=5,width=3,justify='right',textvariable=EntryChickenList[8],state = DISABLED)
 txtChicken9.grid(row=1,column =3)
-txtChicken10 = Entry(fChicken22 ,font=('TH Sarabun New',12,'bold'),bd=5,width=26,justify='right',textvariable=EntryChickenList[9],state = DISABLED)
+txtChicken10 = Entry(fChicken22 ,font=('TH Sarabun New',12,'bold'),bd=5,width=6,justify='right',textvariable=EntryChickenList[9],state = DISABLED)
 txtChicken10.grid(row=1,column =5)
 
 #===============================Variable Calculation =====================
