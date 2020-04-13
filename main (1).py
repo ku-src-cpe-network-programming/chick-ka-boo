@@ -120,7 +120,7 @@ logo.grid(row=0,column=0)
 #============================= FTP Server =====================
 EntryServer = StringVar()
 
-widthEntryServer=48
+widthEntryServer=27
 txtServer = Entry(fRemail ,font=('TH Sarabun New',12,'bold'),bd=5,width=widthEntryServer,justify='left',textvariable=EntryServer, state = NORMAL)
 txtServer.grid(row=1,column =1)
 
@@ -722,9 +722,9 @@ btnReset=Button(fButton,padx=padxButtonTotal, fg="black",font=('TH Sarabun New',
 btnExit=Button(fButton,padx=padxButtonTotal, fg="black",font=('TH Sarabun New',18,'bold'),width=widthButtonTotal,
                 text="ออก",command=qExit).grid(row=0, column=3)
 #===== btn email server=============
-btnServer=Button(fRemail,padx=22, fg="black",font=('TH Sarabun New',12,'bold'),width=5,
+btnServer=Button(fRemail,padx=78, fg="black",font=('TH Sarabun New',12,'bold'),width=5,
                 text="เปลี่ยน user,pass ของ FTP เซิฟเวอร์",command=serverAccess).grid(row=1, column=2)
-btnEmail=Button(fRemail,padx=22, fg="black",font=('TH Sarabun New',12,'bold'),width=5,
+btnEmail=Button(fRemail,padx=78, fg="black",font=('TH Sarabun New',12,'bold'),width=5,
                 text="เปลี่ยน user,pass ของอีเมล์",command=emailAccess).grid(row=2, column=2)
 btnSendFile=Button(fRsendfile_1,padx=30, fg="black",font=('TH Sarabun New',18,'bold'),width=5,
                 text="ยืนยัน",command=sendFile).grid(row=3, column=1)
