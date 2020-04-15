@@ -157,7 +157,7 @@ def sendFile():
     print("E-Mail\t: "+EntryEmail.get())
     global ftp_user,ftp_pass,email_user,email_pass,ChickenList
     shop = "Chick-ka-boo"
-    filename = time.strftime(shop+"%Y%b%d")+".txt"
+    filename = time.strftime(shop+"%Y%b%d"),".txt"
     with open(filename, 'r',encoding="utf-8") as f:
         lines = f.read().splitlines()
         last_line = lines[-2]
@@ -414,7 +414,7 @@ def ReadNumber(number):
         pos += 1
     return ret
 
-totalday=0       
+totalday=0
 def Receipt():
     global NumOrder,sum_total,sum_chick
     if VarChickenList[0].get() != 0 or VarChickenList[1].get() != 0 or VarChickenList[2].get() != 0 or VarChickenList[3].get() != 0 or VarChickenList[4].get() != 0 or VarChickenList[5].get() != 0 or VarChickenList[6].get() != 0 or VarChickenList[8].get() != 0 or VarChickenList[9].get() != 0 or VarChickenList[10].get() != 0:
@@ -431,13 +431,11 @@ def Receipt():
             txtReceipt.insert(END,'หมายเลขใบเสร็จ :\t\t\t'+ ReceiptRef.get()  + '\t\t' + DateofOrder.get() + "\n")
             txtReceipt.insert(END,'รายการ\t'+ str('%d'%(NumOrder))+'\t\t'+ 'จำนวน \t'+ str('%.2f'%total)+'\t'+ " ราคา  \n\n")
             NumOrder+=1
-            rg.write('หมายเลขใบเสร็จ:'+ReceiptRef.get()+ '\t\t' + DateofOrder.get() + "\n")
-            rg.write('รายการ\t'+ str('%d'%(NumOrder))+'\t\t'+ 'จำนวน \t'+ str('%.2f'%total)+'\t'+ " ราคา  \n\n")
             for i in range(10) :
                 if int(EntryChickenList[i].get()) > 0 :
                     sum_chick[i]+=int(EntryChickenList[i].get())
                     txtReceipt.insert(END, ChickenList[i] +'\t\t'+'('+str(ChickPriceList[i])+')'+'\t'+ str(int(EntryChickenList[i].get())) + "\t\t" + str( '%.2f'%(ChickPriceList[i]* int(EntryChickenList[i].get()) ) ) +'\n')
-                    rg.write(ChickenList[i] +'\t\t'+'('+str(ChickPriceList[i])+')'+'\t'+ str(int(EntryChickenList[i].get())) + "\t\t" + str( '%.2f'%(ChickPriceList[i]* int(EntryChickenList[i].get()) ) ) +'\n')
+                    #rg.write(ChickenList[i] +'\t\t'+'('+str(ChickPriceList[i])+')'+'\t'+ str(int(EntryChickenList[i].get())) + "\t\t" + str( '%.2f'%(ChickPriceList[i]* int(EntryChickenList[i].get()) ) ) +'\n')
 
 ##            txtReceipt.insert(END,'\nค่าบริการ : \t\t'+ str('%.2f'%Service)+ "\tบาท\t( "+ThaiBahtConversion(Service) + ' )\n')        
             txtReceipt.insert(END,'ราคารวมสุทธิ : \t\t'+ str('%.2f'%total)+ "\tบาท\t( "+ThaiBahtConversion(total) + ' )\n')
@@ -446,18 +444,13 @@ def Receipt():
             txtReceipt.insert(END,'เงินทอน : \t\t'+ str('%.2f'%abs(round(changeM,2))) +"\tบาท\t( "+ThaiBahtConversion(changeM) + ' )\n')
 
 ##            rg.write('\nค่าบริการ : \t\t'+ str('%.2f'%Service)+ "\tบาท\t( "+ThaiBahtConversion(Service) + ' )\n')
-            rg.write('ราคารวมสุทธิ : \t\t'+ str('%.2f'%total)+ "\tบาท\t( "+ThaiBahtConversion(total) + ' )\n')
-            rg.write('รับเงิน : \t\t\t'+ str('%.2f'%float(ReceiveMoney.get())) +"\tบาท\t( "+ThaiBahtConversion(float(ReceiveMoney.get())) + ' )\n')
-            rg.write('เงินทอน : \t\t\t'+ str('%.2f'%abs(round(changeM,2))) +"\tบาท\t( "+ThaiBahtConversion(changeM) + ' )\n')
-            rg.write("---------------------------------------------------------------\n")
             str1 = "["
             for i in range(10):
                 str1+=str(sum_chick[i])
                 if i !=9:
                     str1+=','
             str1+=']'
-            rg.write(str(sum_total)+' '+str1+'\n')
-            rg.write("---------------------------------------------------------------\n")
+            rg.write(ReceiptRef.get()+"\t"+str('%.2f'%total)+"\t"+str(sum_total)+"\t"+str1+'\n')
             rg.close()
         elif(round(changeM,1)<0):
             txtReceipt.delete("1.0",END)
