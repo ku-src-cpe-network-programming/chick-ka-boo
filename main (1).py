@@ -423,7 +423,6 @@ def Receipt():
                 print(i.get())
             shop = "Chick-ka-boo"
             fileName = time.strftime(shop+"%Y%b%d")+".txt"
-            rg = open(fileName,'a',encoding="utf-8")
             txtReceipt.delete("1.0",END)
             x = random.randint(10908,500876)
             randomRef = str(x)
@@ -431,7 +430,7 @@ def Receipt():
             txtReceipt.insert(END,'หมายเลขใบเสร็จ :\t\t\t'+ ReceiptRef.get()  + '\t\t' + DateofOrder.get() + "\n")
             txtReceipt.insert(END,'รายการ\t'+ str('%d'%(NumOrder))+'\t\t'+ 'จำนวน \t'+ str('%.2f'%total)+'\t'+ " ราคา  \n\n")
             NumOrder+=1
-            for i in range(10) :
+            for i in range(10):
                 if int(EntryChickenList[i].get()) > 0 :
                     sum_chick[i]+=int(EntryChickenList[i].get())
                     txtReceipt.insert(END, ChickenList[i] +'\t\t'+'('+str(ChickPriceList[i])+')'+'\t'+ str(int(EntryChickenList[i].get())) + "\t\t" + str( '%.2f'%(ChickPriceList[i]* int(EntryChickenList[i].get()) ) ) +'\n')
@@ -444,14 +443,30 @@ def Receipt():
             txtReceipt.insert(END,'เงินทอน : \t\t'+ str('%.2f'%abs(round(changeM,2))) +"\tบาท\t( "+ThaiBahtConversion(changeM) + ' )\n')
 
 ##            rg.write('\nค่าบริการ : \t\t'+ str('%.2f'%Service)+ "\tบาท\t( "+ThaiBahtConversion(Service) + ' )\n')
-            str1 = "["
+            str1 = "" #order
+            str2 = "" #menu
             for i in range(10):
-                str1+=str(sum_chick[i])
+                str1+=str(EntryChickenList[i].get())
+                str2+= ChickenList[i]
                 if i !=9:
                     str1+=','
-            str1+=']'
-            rg.write(ReceiptRef.get()+"\t"+str('%.2f'%total)+"\t"+str(sum_total)+"\t"+str1+'\n')
-            rg.close()
+                    str2+=','
+                    
+##############--------------------แก้การเก็บใบเสร็จ  ----------------------##############       
+            try:
+                rg = open(fileName,'r',encoding="utf-8")
+            except:
+                rg = open(fileName,'a',encoding="utf-8")
+                rg.write("หมายเลขใบเสร็จ,"+"ยอดขายต่อ 1 ใบเสร็จ,"+"ยอดขายใน 1 วัน,"+str2+"\n")
+            try:
+                rg.write(ReceiptRef.get()+","+str('%.2f'%total)+","+str(sum_total)+","+str1+"\n")
+                rg.close()
+            except:
+                rg.close()
+                rg = open(fileName,'a',encoding="utf-8")
+                rg.write(ReceiptRef.get()+","+str('%.2f'%total)+","+str(sum_total)+","+str1+"\n")
+                rg.close()
+##############--------------------จบ แก้การเก็บใบเสร็จ  ----------------------##############                 
         elif(round(changeM,1)<0):
             txtReceipt.delete("1.0",END)
             txtReceipt.insert(END,"***ยังจ่ายเงินไม่ครบ***")
