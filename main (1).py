@@ -4,7 +4,7 @@ from tkinter import simpledialog
 from PIL import Image
 from PIL import ImageTk
 from ftplib import FTP
-
+import getpass
 import random
 import time
 import math
@@ -28,6 +28,8 @@ hs = root.winfo_screenheight()
 x = (ws/2) - (w/2)    
 y = (hs/2) - (h/2)
 
+entry_state=1
+print_state=0
 root.geometry('%dx%d+%d+%d' % (w, h, x, y))
 #root.geometry("1280x720+0+0")
 ##root.resizable(0, 0)
@@ -131,10 +133,12 @@ txtEmail = Entry(fRemail ,font=('TH Sarabun New',12,'bold'),bd=5,width=widthEntr
 txtEmail.grid(row=2,column =1)
 
 #============================= Function =====================
+def lock():
+    pass
 def serverAccess():
     global ftp_user,ftp_pass
     print("Server\t: "+EntryServer.get())
-    x = simpledialog.askstring(title="secret ftp setting",prompt="Format: user,pass")
+    x = simpledialog.askstring(title="secret ftp setting",prompt="Format: user,pass", show='*')
     print(x)
     if x != None:
         (x1,x2)=x.split(',')
@@ -145,7 +149,7 @@ def serverAccess():
 def emailAccess():
     global email_user,email_pass
     print("E-Mail\t: "+EntryEmail.get())
-    x = simpledialog.askstring(title="secret email setting",prompt="Format: user,pass")
+    x = simpledialog.askstring(title="secret email setting",prompt="Format: user,pass", show='*')
     print(x)
     if x != None:
         (x1,x2)=x.split(',')
@@ -243,21 +247,21 @@ def qExit():
         root.destroy()
         return
 def Reset():
-    FrameChickenReset()
-    FrameCostReset()
-    txtReceipt.delete("1.0",END)
-##    x = simpledialog.askstring(title="secret ftp setting",prompt="Format: user,pass")
-##    print(x)
-##    if x != None:
-##        (x1,x2)=x.split(',')
-##        print(x1,x2)
-
+    global entry_state,print_state
+    global btnTotal
+    global btnReceipt
+    if(print_state==0):
+        entry_state=1
+        FrameChickenReset()
+        FrameCostReset()
+        txtReceipt.delete("1.0",END)
+    else:
+        messagebox.showerror("กรุณาพิมพ์ใบเสร็จก่อน", "พิมพ์ใบเสร็จก่อน")
 def FrameChickenReset():
     for x in VarChickenList:
         x.set("0")
     for x in EntryChickenList:
         x.set("0")
-
     txtChicken0.configure(state = DISABLED)
     txtChicken1.configure(state = DISABLED)
     txtChicken2.configure(state = DISABLED)
@@ -283,7 +287,6 @@ def FrameCostReset():
 
 def chkbutton_value(chkValue,txtLabel,Entry):
     if chkValue.get() == 1:
-        
         txtLabel.configure(state=NORMAL)
     elif chkValue.get() == 0:
         txtLabel.configure(state=DISABLED)
@@ -305,7 +308,10 @@ changeMoney=""
 
 def CostofItem():
     global NumOrder
+    global entry_state,print_state
     NumOrder=0
+    if(entry_state==0):
+        return 0
     for i in VarChickenList:
         if(i.get()!=0):
             NumOrder=NumOrder+1
@@ -348,10 +354,13 @@ def CostofItem():
             
             if(round(changeM,1)==0):
                 changeMoney = "0.00 บาท"
+                print_state=1
             elif(round(changeM,1)<0):
                 changeMoney = "***จ่ายยังไม่ครบ***"
+                print_state=1
             elif(round(changeM,1)>0):
                 changeMoney = str('%.2f'%(changeM)),"บาท"
+                print_state=1
             ChangeMoney.set(changeMoney)
             
 
@@ -416,13 +425,16 @@ def ReadNumber(number):
 
 totalday=0
 def Receipt():
-    global NumOrder,sum_total,sum_chick
+    global NumOrder,sum_total,sum_chick,entry_state,print_state
+    if(entry_state==0):
+        return 0
     if VarChickenList[0].get() != 0 or VarChickenList[1].get() != 0 or VarChickenList[2].get() != 0 or VarChickenList[3].get() != 0 or VarChickenList[4].get() != 0 or VarChickenList[5].get() != 0 or VarChickenList[6].get() != 0 or VarChickenList[8].get() != 0 or VarChickenList[9].get() != 0 or VarChickenList[10].get() != 0:
         if(round(changeM,1)>=0):
             for i in EntryChickenList:
                 print(i.get())
             shop = "Chick-ka-boo"
             fileName = time.strftime(shop+"%Y%b%d")+".txt"
+            rg = open(fileName,'a',encoding="utf-8")
             txtReceipt.delete("1.0",END)
             x = random.randint(10908,500876)
             randomRef = str(x)
@@ -430,7 +442,7 @@ def Receipt():
             txtReceipt.insert(END,'หมายเลขใบเสร็จ :\t\t\t'+ ReceiptRef.get()  + '\t\t' + DateofOrder.get() + "\n")
             txtReceipt.insert(END,'รายการ\t'+ str('%d'%(NumOrder))+'\t\t'+ 'จำนวน \t'+ str('%.2f'%total)+'\t'+ " ราคา  \n\n")
             NumOrder+=1
-            for i in range(10):
+            for i in range(10) :
                 if int(EntryChickenList[i].get()) > 0 :
                     sum_chick[i]+=int(EntryChickenList[i].get())
                     txtReceipt.insert(END, ChickenList[i] +'\t\t'+'('+str(ChickPriceList[i])+')'+'\t'+ str(int(EntryChickenList[i].get())) + "\t\t" + str( '%.2f'%(ChickPriceList[i]* int(EntryChickenList[i].get()) ) ) +'\n')
@@ -443,6 +455,8 @@ def Receipt():
             txtReceipt.insert(END,'เงินทอน : \t\t'+ str('%.2f'%abs(round(changeM,2))) +"\tบาท\t( "+ThaiBahtConversion(changeM) + ' )\n')
 
 ##            rg.write('\nค่าบริการ : \t\t'+ str('%.2f'%Service)+ "\tบาท\t( "+ThaiBahtConversion(Service) + ' )\n')
+
+##############--------------------แก้การเก็บใบเสร็จ ----------------------##############  
             str1 = "" #order
             str2 = "" #menu
             for i in range(10):
@@ -451,8 +465,6 @@ def Receipt():
                 if i !=9:
                     str1+=','
                     str2+=','
-                    
-##############--------------------แก้การเก็บใบเสร็จ  ----------------------##############       
             try:
                 rg = open(fileName,'r',encoding="utf-8")
             except:
@@ -466,7 +478,10 @@ def Receipt():
                 rg = open(fileName,'a',encoding="utf-8")
                 rg.write(ReceiptRef.get()+","+str('%.2f'%total)+","+str(sum_total)+","+str1+"\n")
                 rg.close()
-##############--------------------จบ แก้การเก็บใบเสร็จ  ----------------------##############                 
+##############--------------------จบ แก้การเก็บใบเสร็จ  ----------------------##############
+                
+            entry_state=0
+            print_state=0
         elif(round(changeM,1)<0):
             txtReceipt.delete("1.0",END)
             txtReceipt.insert(END,"***ยังจ่ายเงินไม่ครบ***")
@@ -475,7 +490,11 @@ def Receipt():
 ReceiptRef = StringVar()
 DateofOrder = StringVar()
 DateofOrder.set(time.strftime("%d/%m/%Y"))
-
+#============== code oldmenu==================
+#ChickenList = ["ไก่ทอดสไปซี่ ","ไก่ทอดต้มยำ","ไก่นุ่ม","ข้าวยำไก่แซ่บ",
+            #"ไก่ทอดชุดครอบครัว","ชุดไก่สารพัด","ไก่ทอดเกาหลี","ชุดไก่ปิคนิก",
+            #"เคบับไก่","เบอร์เกอร์ไก่"]
+#===============================================
 ChickenList = ["ไก่ทอดสไปซี่ 50 บาท","ไก่ทอดต้มยำ 50 บาท","ไก่นุ่ม 50 บาท","ข้าวยำไก่แซ่บ 50 บาท",
             "ไก่ทอดชุดครอบครัว 200 บาท","ชุดไก่สารพัด 150 บาท","ไก่ทอดเกาหลี 100 บาท","ชุดไก่ปิคนิก 80 บาท",
             "เคบับไก่ 80 บาท","เบอร์เกอร์ไก่ 70 บาท"]
@@ -736,5 +755,4 @@ btnEmail=Button(fRemail,padx=78, fg="black",font=('TH Sarabun New',12,'bold'),wi
                 text="เปลี่ยน user,pass ของอีเมล์",command=emailAccess).grid(row=2, column=2)
 btnSendFile=Button(fRsendfile_1,padx=30, fg="black",font=('TH Sarabun New',18,'bold'),width=5,
                 text="ยืนยัน",command=sendFile).grid(row=3, column=1)
-
 root.mainloop()
